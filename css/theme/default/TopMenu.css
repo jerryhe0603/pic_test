@@ -1,0 +1,104 @@
+ul.navigation li {
+	position: relative;
+	float: left;
+	list-style: none;
+
+}
+
+/* 選單裡 連結樣式 */
+ul.navigation li a,ul.navigation li span {
+	display: block;
+	padding: 12px 20px;
+	background: #FF8205;
+	color:white;
+}
+
+/* 第一層做框線區隔 */
+ul.navigation > li > a {
+	border-bottom: 1px solid #CCC;
+	border-left: 1px solid #CCC;
+}
+
+ul.navigation > li > a:hover {
+	color: #666;
+	background: #DDD;
+}
+
+ul.navigation li a:hover {
+	color: #666;
+	background: #DDD;
+}
+
+
+/* 第二層之後 */
+
+ul.navigation li ul{
+	display: none;
+	position: absolute;
+	float: left;
+	margin: 0; /*padding 跟 margin 設0後block才會靠左 */
+	padding: 0;
+	z-index: 100;
+}
+
+/* 第一層選單被觸發時 第二層 顯示 */
+ul.navigation li:hover >ul {
+	display:block;
+}
+
+/* 第二層下拉 li樣式 */
+ul.navigation ul li{
+	border-bottom: 1px solid #DDD;
+}
+
+/* 最後一項不要底線*/
+ul.navigation ul li:last-child{
+	border-bottom: none;
+}
+
+/* 第二層後 li樣式 */
+ul.navigation ul a,ul.navigation ul span{
+	width: 142px;
+	padding: 10px 12px;
+	color: #666;
+	background: #EEE;
+}
+
+ul.navigation ul a:hover{
+	background: #CCC;
+}
+
+/* 第三層後 上層選單觸發就顯示  */
+ul.navigation ul li:hover > ul{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 100%;
+}
+
+
+
+
+
+/*下箭頭 */
+.arrow-bottom{
+	display: inline-block;
+	margin-left: 5px;
+	border-top: 4px solid #FFF;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+	width: 1px;
+	height: 1px;	
+}
+
+
+/*右箭頭 */
+.arrow-right{
+	display: inline-block;
+	margin-left: 12px;
+	border-top: 3px solid #FFF;
+	border-bottom: 3px solid transparent;
+	border-left: 3px solid #666;
+	width: 1px;
+	height: 1px;	
+}

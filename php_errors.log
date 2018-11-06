@@ -1,0 +1,229 @@
+[02-Oct-2017 06:54:25 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:54:25 UTC] PHP Stack trace:
+[02-Oct-2017 06:54:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:54:25 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:54:25 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:54:25 UTC] PHP Stack trace:
+[02-Oct-2017 06:54:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:54:25 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:54:38 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:54:38 UTC] PHP Stack trace:
+[02-Oct-2017 06:54:38 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:54:38 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:54:38 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:54:38 UTC] PHP Stack trace:
+[02-Oct-2017 06:54:38 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:54:38 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:54:50 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:54:50 UTC] PHP Stack trace:
+[02-Oct-2017 06:54:50 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:54:50 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:54:50 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:54:50 UTC] PHP Stack trace:
+[02-Oct-2017 06:54:50 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:54:50 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:55:03 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:55:03 UTC] PHP Stack trace:
+[02-Oct-2017 06:55:03 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:55:03 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:55:03 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:55:03 UTC] PHP Stack trace:
+[02-Oct-2017 06:55:03 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:55:03 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:55:15 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:55:15 UTC] PHP Stack trace:
+[02-Oct-2017 06:55:15 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:55:15 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:55:15 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:55:15 UTC] PHP Stack trace:
+[02-Oct-2017 06:55:15 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:55:15 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:55:28 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:55:28 UTC] PHP Stack trace:
+[02-Oct-2017 06:55:28 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:55:28 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:55:28 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:55:28 UTC] PHP Stack trace:
+[02-Oct-2017 06:55:28 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:55:28 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:55:40 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:55:40 UTC] PHP Stack trace:
+[02-Oct-2017 06:55:40 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:55:40 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:55:40 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:55:40 UTC] PHP Stack trace:
+[02-Oct-2017 06:55:40 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:55:40 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:55:52 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:55:52 UTC] PHP Stack trace:
+[02-Oct-2017 06:55:52 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:55:52 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:55:52 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:55:52 UTC] PHP Stack trace:
+[02-Oct-2017 06:55:52 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:55:52 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:56:05 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:56:05 UTC] PHP Stack trace:
+[02-Oct-2017 06:56:05 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:56:05 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:56:05 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:56:05 UTC] PHP Stack trace:
+[02-Oct-2017 06:56:05 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:56:05 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:56:17 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:56:17 UTC] PHP Stack trace:
+[02-Oct-2017 06:56:17 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:56:17 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:56:17 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:56:17 UTC] PHP Stack trace:
+[02-Oct-2017 06:56:17 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:56:17 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:56:30 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:56:30 UTC] PHP Stack trace:
+[02-Oct-2017 06:56:30 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:56:30 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:56:30 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:56:30 UTC] PHP Stack trace:
+[02-Oct-2017 06:56:30 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:56:30 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:56:42 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:56:42 UTC] PHP Stack trace:
+[02-Oct-2017 06:56:42 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:56:42 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:56:42 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:56:42 UTC] PHP Stack trace:
+[02-Oct-2017 06:56:42 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:56:42 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:56:55 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:56:55 UTC] PHP Stack trace:
+[02-Oct-2017 06:56:55 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:56:55 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:56:55 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:56:55 UTC] PHP Stack trace:
+[02-Oct-2017 06:56:55 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:56:55 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:57:07 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:57:07 UTC] PHP Stack trace:
+[02-Oct-2017 06:57:07 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:57:07 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:57:07 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:57:07 UTC] PHP Stack trace:
+[02-Oct-2017 06:57:07 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:57:07 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:57:19 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:57:19 UTC] PHP Stack trace:
+[02-Oct-2017 06:57:19 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:57:19 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:57:19 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:57:19 UTC] PHP Stack trace:
+[02-Oct-2017 06:57:19 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:57:19 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:57:32 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:57:32 UTC] PHP Stack trace:
+[02-Oct-2017 06:57:32 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:57:32 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:57:32 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:57:32 UTC] PHP Stack trace:
+[02-Oct-2017 06:57:32 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:57:32 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:57:44 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:57:44 UTC] PHP Stack trace:
+[02-Oct-2017 06:57:44 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:57:44 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:57:44 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:57:44 UTC] PHP Stack trace:
+[02-Oct-2017 06:57:44 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:57:44 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:57:57 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:57:57 UTC] PHP Stack trace:
+[02-Oct-2017 06:57:57 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:57:57 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:57:57 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:57:57 UTC] PHP Stack trace:
+[02-Oct-2017 06:57:57 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:57:57 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:58:09 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:58:09 UTC] PHP Stack trace:
+[02-Oct-2017 06:58:09 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:58:09 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:58:09 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:58:09 UTC] PHP Stack trace:
+[02-Oct-2017 06:58:09 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:58:09 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:58:22 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:58:22 UTC] PHP Stack trace:
+[02-Oct-2017 06:58:22 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:58:22 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:58:22 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:58:22 UTC] PHP Stack trace:
+[02-Oct-2017 06:58:22 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:58:22 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:58:34 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:58:34 UTC] PHP Stack trace:
+[02-Oct-2017 06:58:34 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:58:34 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:58:34 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:58:34 UTC] PHP Stack trace:
+[02-Oct-2017 06:58:34 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:58:34 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:58:46 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:58:46 UTC] PHP Stack trace:
+[02-Oct-2017 06:58:46 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:58:46 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:58:46 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:58:46 UTC] PHP Stack trace:
+[02-Oct-2017 06:58:46 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:58:46 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:58:59 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:58:59 UTC] PHP Stack trace:
+[02-Oct-2017 06:58:59 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:58:59 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:58:59 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:58:59 UTC] PHP Stack trace:
+[02-Oct-2017 06:58:59 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:58:59 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:59:11 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:59:11 UTC] PHP Stack trace:
+[02-Oct-2017 06:59:11 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:59:11 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:59:11 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:59:11 UTC] PHP Stack trace:
+[02-Oct-2017 06:59:11 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:59:11 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:59:24 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:59:24 UTC] PHP Stack trace:
+[02-Oct-2017 06:59:24 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:59:24 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 06:59:24 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 06:59:24 UTC] PHP Stack trace:
+[02-Oct-2017 06:59:24 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 06:59:24 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 07:08:22 UTC] PHP Warning:  include(RoyBot.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 07:08:22 UTC] PHP Stack trace:
+[02-Oct-2017 07:08:22 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 07:08:22 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 07:08:22 UTC] PHP Warning:  include(): Failed opening 'RoyBot.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php on line 83
+[02-Oct-2017 07:08:22 UTC] PHP Stack trace:
+[02-Oct-2017 07:08:22 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 07:08:22 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 07:32:58 UTC] PHP Warning:  fopen(../../log/RoyBot.php20171002073258.txt): failed to open stream: No such file or directory in /home/ubuntu/workspace/WiCareERP/API/Chatisfy.php on line 9
+[02-Oct-2017 07:32:58 UTC] PHP Stack trace:
+[02-Oct-2017 07:32:58 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 07:32:58 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 07:32:58 UTC] PHP   3. include() /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php:83
+[02-Oct-2017 07:32:58 UTC] PHP   4. output_log() /home/ubuntu/workspace/WiCareERP/API/RoyBot.php:60
+[02-Oct-2017 07:32:58 UTC] PHP   5. fopen() /home/ubuntu/workspace/WiCareERP/API/Chatisfy.php:9
+[02-Oct-2017 07:32:58 UTC] PHP Warning:  fwrite() expects parameter 1 to be resource, boolean given in /home/ubuntu/workspace/WiCareERP/API/Chatisfy.php on line 10
+[02-Oct-2017 07:32:58 UTC] PHP Stack trace:
+[02-Oct-2017 07:32:58 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 07:32:58 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 07:32:58 UTC] PHP   3. include() /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php:83
+[02-Oct-2017 07:32:58 UTC] PHP   4. output_log() /home/ubuntu/workspace/WiCareERP/API/RoyBot.php:60
+[02-Oct-2017 07:32:58 UTC] PHP   5. fwrite() /home/ubuntu/workspace/WiCareERP/API/Chatisfy.php:10
+[02-Oct-2017 07:32:58 UTC] PHP Warning:  fclose() expects parameter 1 to be resource, boolean given in /home/ubuntu/workspace/WiCareERP/API/Chatisfy.php on line 11
+[02-Oct-2017 07:32:58 UTC] PHP Stack trace:
+[02-Oct-2017 07:32:58 UTC] PHP   1. {main}() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:0
+[02-Oct-2017 07:32:58 UTC] PHP   2. I2C_Interface->connectInterface() /home/ubuntu/workspace/WiCareERP/sch/AutoUpdateSale.php:317
+[02-Oct-2017 07:32:58 UTC] PHP   3. include() /home/ubuntu/workspace/WiCareERP/API/I2C_Interface.php:83
+[02-Oct-2017 07:32:58 UTC] PHP   4. output_log() /home/ubuntu/workspace/WiCareERP/API/RoyBot.php:60
+[02-Oct-2017 07:32:58 UTC] PHP   5. fclose() /home/ubuntu/workspace/WiCareERP/API/Chatisfy.php:11

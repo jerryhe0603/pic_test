@@ -1,0 +1,26 @@
+body{
+	font-family: Helvetica,"segoe ui","microsoft jhenghei","microsoft mhei",Arial Unicode MS,Arial;
+	color: #0088B5;
+}
+
+a{
+	text-decoration: none;
+	color: #0088B5;
+	outline: none;
+}
+
+
+
+.fitem{
+	margin-bottom:10%;
+	margin-right:10%;
+}
+
+.search_btn{
+	border:1px solid #ccc;
+}
+
+
+.form_table tr th,td{
+	padding:5px;
+}

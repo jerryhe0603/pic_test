@@ -1,0 +1,458 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-16 14:23+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: hello.php:19
+msgid "Hello World!"
+msgstr ""
+
+#: hello.php:21
+msgid "This is book."
+msgstr "This is books."
+
+
+#: Login.php --------------------------------------
+
+msgid "帳號"
+msgstr "Account"
+
+msgid "密碼"
+msgstr "Password"
+
+msgid "登入"
+msgstr "Login"
+
+
+#: Login.php --------------------------------------
+
+
+
+#: Header.php --------------------------------------
+msgid "確定要登出嗎"
+msgstr "Are you sure to Logout"
+
+msgid "登出"
+msgstr "Logout"
+
+msgid "作業項"
+msgstr "Operation"
+
+msgid "報表"
+msgstr "Report"
+
+
+msgid "維護"
+msgstr "Maintance"
+
+
+# -------------  作業項 ---------------#
+
+msgid "商品主檔"
+msgstr "Stock"
+
+msgid "商品類別"
+msgstr "StockCategory"
+
+msgid "商品價格維護"
+msgstr "StockPrice"
+
+msgid "夥伴主檔"
+msgstr "Partner"
+
+msgid "訂單作業"
+msgstr "Sale"
+
+# -------------  作業項 ---------------#
+
+#: Header.php --------------------------------------
+
+
+
+
+
+#: Stock.php --------------------------------------
+msgid "第"
+msgstr "No"
+
+msgid "頁"
+msgstr "Page"
+
+msgid "共"
+msgstr "All"
+
+msgid "顯示"
+msgstr "Show"
+
+msgid "到"
+msgstr "To"
+
+msgid "筆"
+msgstr ""
+
+msgid "資料"
+msgstr "Data"
+
+msgid "訊息提示"
+msgstr "Information"
+
+msgid "請先完成目前資料或取消"
+msgstr "Please finish the data or cancel "
+
+msgid "請記得按下\"儲存\"已完成此次變更"
+msgstr "Please press \"Save\" button to finish the changes "
+
+
+
+
+msgid "編號"
+msgstr "Code"
+
+msgid "名稱"
+msgstr "Name"
+
+msgid "簡稱"
+msgstr "Short Name"
+
+msgid "類別"
+msgstr "Stock Category"
+
+msgid "品牌"
+msgstr "Stock Brand"
+
+msgid "單位"
+msgstr "Stock Unit"
+
+msgid "條碼"
+msgstr "Barcode"
+
+msgid "國別"
+msgstr "Country"
+
+msgid "稅別"
+msgstr "Tax Type"
+
+msgid "是否上架"
+msgstr "Is Valid"
+
+msgid "贈品"
+msgstr "Gift"
+
+msgid "序號商品"
+msgstr "Serial Stock"
+
+msgid "寄賣品"
+msgstr "Consignment"
+
+msgid "備註"
+msgstr "Description"
+
+msgid "建立者"
+msgstr "Create User"
+
+msgid "建立時間"
+msgstr "Create Time"
+
+msgid "修改者"
+msgstr "Modify User"
+
+msgid "修改時間"
+msgstr "Modify Time"
+
+
+
+msgid "新增"
+msgstr "Add"
+
+msgid "完成"
+msgstr "Finish"
+
+msgid "取消"
+msgstr "Reject"
+
+msgid "刪除"
+msgstr "Remove"
+
+msgid "儲存"
+msgstr "Save"
+
+
+msgid "搜尋"
+msgstr "Search"
+
+msgid "清除"
+msgstr "Clear"
+
+msgid "圖片"
+msgstr "Picture"
+
+msgid "商品圖片"
+msgstr "Stock Picture"
+
+msgid "請選擇檔案"
+msgstr "Please Choose another file"
+
+
+msgid "供應商"
+msgstr "Supplier"
+
+msgid "價格"
+msgstr "Price"
+
+msgid "維護"
+msgstr "Maintance"
+
+msgid "外部"
+msgstr "External"
+
+
+msgid "價格類型"
+msgstr "PriceType"
+
+msgid "幣別"
+msgstr "Currencies"
+
+
+msgid "已有庫存異動紀錄"
+msgstr "already have inventory change log "
+
+msgid "不允許儲存"
+msgstr "can't save"
+
+#: Stock.php --------------------------------------
+
+
+
+#: StockCategory.php --------------------------------------
+
+msgid "隸屬"
+msgstr "Parent"
+
+msgid "新增類別"
+msgstr "Add StockCategory"
+
+msgid "修改類別"
+msgstr "Edit StockCategory"
+
+msgid "未選擇資料"
+msgstr "Not choice data"
+
+msgid "請選擇一列"
+msgstr "Please choice one row"
+
+
+msgid "確定要修改嗎"
+msgstr "Are you sure to modify"
+
+msgid "確定要修改嗎"
+msgstr "Are you sure to delete"
+
+msgid "新增完成"
+msgstr "Add Complete"
+
+msgid "修改完成"
+msgstr "Edit Complete"
+
+msgid "修改完成"
+msgstr "Delete Complete"
+
+
+msgid "警告"
+msgstr "Warning"
+
+
+msgid "Ajax request 發生錯誤"
+msgstr "Ajax request error occur"
+
+
+msgid "修改"
+msgstr "Edit"
+
+msgid "關閉"
+msgstr "Close"
+
+
+msgid "已使用,不允許刪除"
+msgstr "is used, cant' delete"
+
+msgid "不允許刪除"
+msgstr "cant' delete"
+
+#: StockCategory.php --------------------------------------
+
+
+
+#: TaxType.php --------------------------------------
+
+msgid "稅率"
+msgstr "Tax Rate"
+
+#: TaxType.php --------------------------------------
+
+
+#: Partner.php --------------------------------------
+
+msgid "電話"
+msgstr "Phone"
+
+msgid "手機"
+msgstr "Mobile"
+
+msgid "統一編號"
+msgstr "Uniform Number"
+
+msgid "夥伴類型"
+msgstr "Partner Type"
+
+msgid "發票"
+msgstr "Invoice"
+
+msgid "地址"
+msgstr "Address"
+
+msgid "聯絡"
+msgstr "Contact"
+
+msgid "付款方式"
+msgstr "Payment Name"
+
+msgid "屬性"
+msgstr "Property"
+
+
+msgid "已跟此夥伴連結"
+msgstr "is link with this partner."
+
+
+#: Partner.php --------------------------------------
+
+
+
+#: SalePoint.php --------------------------------------
+
+msgid "部門"
+msgstr "Department"
+
+#: SalePoint.php --------------------------------------
+
+
+
+#: Sale.php --------------------------------------
+
+msgid "銷售點"
+msgstr "Sale Point"
+
+msgid "門市"
+msgstr "Sale Point"
+
+msgid "合計"
+msgstr "Total"
+
+msgid "金額"
+msgstr "Amount"
+
+msgid "未稅金額"
+msgstr "Non Tax Amount"
+
+msgid "含稅金額"
+msgstr "Tax Amount"
+
+msgid "發票號碼"
+msgstr "Invoice No"
+
+
+msgid "出貨"
+msgstr "Shipment"
+
+msgid "付款"
+msgstr "Payment"
+
+msgid "狀態"
+msgstr "Status"
+
+msgid "匯率"
+msgstr "Exchange Rate"
+
+msgid "非揀貨狀態無法出貨"
+msgstr "Can't Shipping "
+
+#: Sale.php --------------------------------------
+
+
+
+
+#: SaleDetail.php --------------------------------------
+
+msgid "單價"
+msgstr "Unit Price"
+
+
+msgid "折扣"
+msgstr "Discount Rate"
+
+msgid "折價"
+msgstr "Discount Amount"
+
+msgid "售價"
+msgstr "Price"
+
+
+msgid "數量"
+msgstr "Qty"
+
+
+msgid "稅額"
+msgstr "Tax"
+
+msgid "收件人"
+msgstr "Receiver"
+
+msgid "姓名"
+msgstr "Name"
+#: SaleDetail.php --------------------------------------
+
+
+#: Inventory.php --------------------------------------
+
+msgid "倉別"
+msgstr "WareHouse"
+
+
+
+#: Inventory.php --------------------------------------
+
+
+
+#: Warehouse.php --------------------------------------
+
+msgid "對應"
+msgstr "Related"
+
+#: Warehouse.php --------------------------------------
+
+
+
+#: Purchase.php --------------------------------------
+
+msgid "進貨"
+msgstr "Purchase"
+
+
+msgid "入庫"
+msgstr "Warehouse"
+
+
+#: Purchase.php --------------------------------------
