@@ -48,8 +48,38 @@
 			$("ul.navagation > li ul li:has(ul) > a").append('<div class="arrow-right"></div>');
 		});
 	</script> -->
+	
+	<script type='text/javascript'>
+		
+		function logout(){
+			if(!confirm('<?php echo _('確定要登出嗎')?>?'))return;
 
+			window.location.href="Logout.php";		
+		}
+	
+
+	</script>
 </head>
 <body>
 
+<table border="0">
+<tr>
+	
+	<td align="right" valign="center">
+		<span style='font-size:18px;font-weight:bold;'><BR><?php echo $_SESSION['user_name'] ?> </span>
+	</td>
+	<td valign="center" class=navigation>
+		<ul class=navigation >
+			<li>
+				<a href='javascript:logout();' style='font-size:18px;font-weight:bold;'><?php echo _('登出') ?></a>
+			</li>
+		</ul>
+	</td>
+</tr>
+
+</table>
+
+<!-- <p style='height:50px'></p>
+<hr>
+<p style='height:20px'></p> -->
 

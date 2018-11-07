@@ -10,6 +10,7 @@
 	// printArr($_SESSION);	
 	// printArr($_POST);
 	
+	/*
 	$_SESSION["user_id"] = "admin";
 	$_SESSION["user_name"] = "系統管理者";
 	$_SESSION["password"] = "63be44247e729779c381a0eca56df8fb";
@@ -19,13 +20,12 @@
 	$_SESSION["create_id"] = "admin";
 	$_SESSION["create_name"] = "系統管理者";
 	$_SESSION["create_time"] = "2017-09-25 14:35:14";
-	$_SESSION["lang"] = "en";
-	/*
+	$_SESSION["lang"] = "en";*/
+	
 	if(!isset($_SESSION['user_id'])){
 
 		//確認是否有填帳號密碼
 		if($user_account!='' && $user_password!=''){
-			
 
 			if(MCRYPT=='md5'){
 				$user_password = md5($user_password);
@@ -39,7 +39,7 @@
 
 			$arr = $Session_SQL_data->getData('select',false);
 
-			// printArr($arr);
+			
 			if(count($arr)==0){
 				//config.php
 				// echo 123;exit;
@@ -70,9 +70,9 @@
 	}else{
 		//避免重複登入
 		if(like($_SERVER['PHP_SELF'],'Login')){
-			header('Location:Index.php?');exit;
+			header('Location:index.php?');exit;
 		}	
-	}*/
+	}
 
 	
 ?>

@@ -1,2 +1,0 @@
-sql:params:a:13:{s:8:"pic_name";s:3:"ddd";s:11:"description";s:5:"ddfff";s:8:"is_valid";s:1:"1";s:15:"is_serial_stock";s:0:"";s:7:"is_gift";s:0:"";s:14:"is_consignment";s:0:"";s:9:"data_type";s:11:"PicShowData";s:10:"data_table";s:3:"pic";s:4:"type";s:6:"update";s:9:"master_id";s:1:"7";s:8:"stock_id";s:0:"";s:14:"img_file_path1";s:32:"49ace770eb25c78b15ed119948ee99e5";s:8:"org_img1";s:17:"8385880328864.jpg";}
-sql: UPDATE pic SET pic_name = 'ddd',img_file_path1 = '49ace770eb25c78b15ed119948ee99e5',org_img1 = '8385880328864.jpg',description = 'ddfff' WHERE id = '7'

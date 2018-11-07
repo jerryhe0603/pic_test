@@ -1,7 +1,9 @@
 <?php 
+
 	include_once('Header.php');
 
-// echo "<pre>"; print_r($_SESSION);exit;
+
+
 	extract($_REQUEST);
 
 	$title = "圖片管理";
@@ -57,6 +59,8 @@
 		        {field:'pic_name',title:'<?php echo _('名稱') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'description',title:'<?php echo _('描述') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'create_time',title:'<?php echo _('建立時間') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'width',title:'<?php echo _('原始檔寬') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
+		        {field:'height',title:'<?php echo _('原始檔高') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
 		        {field:'img_file_path1',title:'<?php echo _('圖片') ?>',width:'',align:'center',halign:'center',sortable:true,sortOrder:'asc',
 	    			formatter:function(value,row){
 	    				var has_pic = false;
@@ -69,6 +73,20 @@
 	    				return (has_pic)?'<a href="javascript:doShowPic(stock_form_obj);">'+search_img+'</a>':'';
 					}
 		    	},
+
+		    	{field:'img_file_path',title:'<?php echo _('縮圖') ?>',width:'30%',align:'center',halign:'center',sortable:true,sortOrder:'asc',
+	    			formatter:function(value,row){
+	    				var has_pic = false;
+	    				for(var i=1;i<=5;i++){
+	    					if(row['img_file_path'+i]!=undefined){
+	    						has_pic = true;
+	    					}	
+	    				}
+	    				var img_url= row['img_file_path1'];
+	    				return (has_pic)?'<img height="200" width="200" src="./upload/'+img_url+' " />':'';
+					}
+		    	},
+
 		        // {field:'name',title:'Name',width:100},
 		        // {field:'price',title:'Price',width:100,align:'right'}
 		    ]],
@@ -262,7 +280,7 @@
 		
 					// uploadFile();
 					<?php if($_SESSION['user_id']=='admin'){ ?> 
-						// console.log(result);	
+						// console.log(result);
 					<?php } ?> 
 					
 					var result = eval('('+result+')');

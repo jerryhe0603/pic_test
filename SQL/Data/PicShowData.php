@@ -95,7 +95,8 @@ if($type=='select'){
 
 	extract($params);
 
-	$code_date = date('Y-m-d');
+$files = $params['img_file_path1'];	 
+$size = getimagesize($files["tmp_name"]);
 
 	// sql_log($file_name,serialize($params));
 	$check_name = getColumnValue($table_name,'pic_name','pic_name='.SQLStr($pic_name));
@@ -171,6 +172,9 @@ if($type=='select'){
 					// if($pic_link==''){
 						$pic_link_arr[] = $url.'/'.$files['name'];
 					// }
+					
+ 
+
 					//需把圖片轉成 file or base64 or URL
 
 					//////////////////////////////
@@ -195,6 +199,17 @@ if($type=='select'){
 				}
 				$params[$field_name] = $files['name'];	
 				
+			}else if(like($field_name,'width')){
+				// $files = $params['img_file_path1'];
+				// $size = getimagesize($files["tmp_name"]);
+				$owidth  = $size[0]; 
+				$params[$field_name] = $owidth;	
+
+			}else if(like($field_name,'height')){
+				// $files = $params['img_file_path1'];
+				// $size = getimagesize($files["tmp_name"]);
+				$oheight = $size[1];
+				$params[$field_name] = $oheight;	
 			}
 				
 			$sql_value .= SQLStr($params[$field_name]);	
@@ -245,14 +260,15 @@ if($type=='select'){
 	
 	$id=$master_id;
 
-
+$files = $params['img_file_path1'];	 
+$size = getimagesize($files["tmp_name"]);
 	// $check_code = getColumnValue($table_name,'code','code='.SQLStr($code).' AND id !='.SQLStr($id));
 	// if($check_code!=''){
 
 	// 	$errMsg = _('編號').' '._('重複,不允許儲存').'!';
 	// }else{
 
-		$check_name = getColumnValue($table_name,'pic_name','pic_name='.SQLStr($name).' AND id !='.SQLStr($id));
+		$check_name = getColumnValue($table_name,'pic_name','pic_name='.SQLStr($pic_name).' AND id !='.SQLStr($id));
 		if($check_name!=''){
 
 			$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
@@ -297,8 +313,8 @@ if($type=='select'){
 
 			$field_name = $field->name;
 
-			if($field_name=='code')continue;
-			if($field_name!='id' && !like($field_name,'create_') && !like($field_name,'file_path') && !like($field_name,'org_img')  ){
+			
+			if($field_name!='id' && !like($field_name,'create_') && !like($field_name,'file_path') && !like($field_name,'org_img') && !like($field_name,'width')&& !like($field_name,'height')  ){
 				$update_sql .= $field_name;
 			
 				if(!isset($params[$field_name])){
@@ -357,10 +373,10 @@ if($type=='select'){
 						// 上傳圖片至 imgur 
 						//////////////////////////////
 
-			   //          $im = file_get_contents($upload_file_name);
-			   //          $imdata = base64_encode($im);   
+						   // $im = file_get_contents($upload_file_name);
+						   // $imdata = base64_encode($im);   
 
-			   //        	$ii = new Pic_Interface('Imgur');
+						   // $ii = new Pic_Interface('Imgur');
 						// $tmp_img_arr = array('image'=>$imdata,'type'=>'base64');
 						// $ii -> setParams($tmp_img_arr);
 						// $return_arr = $ii->connectInterface('upload_image',true);
@@ -382,6 +398,31 @@ if($type=='select'){
 
 				}//end if isset
 
+			}else if(like($field_name,'width')){
+
+				$update_sql .= $field_name;
+
+				// $files = $params['img_file_path1'];
+				// $size = getimagesize($files["tmp_name"]);
+				$owidth  = $size[0]; 
+				$params[$field_name] = $owidth;	
+
+				$update_sql .= ' = ';
+				$update_sql .= SQLStr($params[$field_name]);	
+				$update_sql .= ',';
+
+			}else if(like($field_name,'height')){
+
+				$update_sql .= $field_name;
+
+				// $files = $params['img_file_path1'];
+				// $size = getimagesize($files["tmp_name"]);
+				$oheight = $size[1];
+				$params[$field_name] = $oheight;
+
+				$update_sql .= ' = ';
+				$update_sql .= SQLStr($params[$field_name]);	
+				$update_sql .= ',';	
 			}
 
 
