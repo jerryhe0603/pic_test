@@ -1,1 +1,0 @@
-sql:SELECT stock_external_link.*,partner.name AS partner_name FROM stock_external_link LEFT JOIN partner ON stock_external_link.partner_id = partner.id  WHERE (1=1)  AND ( stock_id = "bb908c03-7e66-11e8-90cb-42010a8c0002" )  ORDER BY stock_external_link.stock_id

@@ -83,7 +83,7 @@
 	    					}	
 	    				}
 	    				var img_url= row['img_file_path1'];
-	    				return (has_pic)?'<img height="200" width="200" src="./upload/'+img_url+' " />':'';
+	    				return (has_pic)?'<img height="100" width="100" src="./upload/'+img_url+' " />':'';
 					}
 		    	},
 
@@ -280,7 +280,7 @@
 		
 					// uploadFile();
 					<?php if($_SESSION['user_id']=='admin'){ ?> 
-						// console.log(result);
+						console.log(result);
 					<?php } ?> 
 					
 					var result = eval('('+result+')');

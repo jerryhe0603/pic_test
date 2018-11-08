@@ -1,5 +1,5 @@
 <?php
-
+$print_sql=0;
 $errMsg = '';
 $file_name = '../../log/'.basename(__FILE__).date('YmdHis').'.txt';
 
@@ -21,6 +21,8 @@ if (!function_exists('sql_log')) {
 //上傳檔案的路徑
 $dir_prefix='../../upload/';
 $url = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/upload';
+$url_log = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/thumb';
+$dir_prefix_log = '../../thumb/';;
 
 
 if($type=='select'){
@@ -95,8 +97,8 @@ if($type=='select'){
 
 	extract($params);
 
-$files = $params['img_file_path1'];	 
-$size = getimagesize($files["tmp_name"]);
+    $img_file = $params['img_file_path1'];	 
+    $size = getimagesize($img_file["tmp_name"]);
 
 	// sql_log($file_name,serialize($params));
 	$check_name = getColumnValue($table_name,'pic_name','pic_name='.SQLStr($pic_name));
@@ -163,17 +165,56 @@ $size = getimagesize($files["tmp_name"]);
 
 					$params['org_img'.substr($field_name,-1)] = $files['name'];	
 					//解決中文無法上傳
-					$files['name'] = md5($files['name']);
+					$files['name'] = ($files['name']);
+					// $files['name'] = md5($files['name']);
 
 					$upload_file_name = $dir_path.$files["name"];
 					// unlink($id.'_'.$files["name"]);
 					move_uploaded_file($files["tmp_name"],$upload_file_name);
-
+					chmod($upload_file_name, 0777);
 					// if($pic_link==''){
 						$pic_link_arr[] = $url.'/'.$files['name'];
 					// }
 					
- 
+
+					//============在傳一次縮圖 1280x720
+					switch ($files['type']) {
+			            case 'image/jpeg': 
+			            	$ext = ".jpg"; 
+							
+							// 取得上傳圖片
+			            	$src = imagecreatefromjpeg($upload_file_name);
+			            	break;
+			            case 'image/png': 
+			            	$ext = ".png"; 
+			            	// 取得上傳圖片
+			            	$src = imagecreatefrompng($upload_file_name);
+			            break;
+			            default: 
+			            	$ext = ''; 
+
+			            break;
+			        }
+
+			        $newwidth = "1280";
+			        $newheight = "720";
+			        // Load
+					$thumb = imagecreatetruecolor($newwidth, $newheight);
+
+					// 開始縮圖
+					imagecopyresampled($thumb, $src, 0, 0, 0, 0, $newwidth, $newheight, $size[0], $size[1]);
+					// $source = imagecreatefromjpeg($url.'/'.$files['name']);//  /tmp/phpxOA1TK
+
+					// 儲存縮圖到指定  目錄
+					if($files['type']=="image/jpeg"){
+						imagejpeg($thumb, $dir_prefix_log.$files['name']);
+					}else if($files['type']=="image/png"){
+						imagepng($thumb, $dir_prefix_log.$files['name']);
+					}
+					
+
+					chmod($dir_prefix_log.$files['name'], 0777);
+ 					//=======================
 
 					//需把圖片轉成 file or base64 or URL
 
@@ -361,11 +402,39 @@ $size = getimagesize($files["tmp_name"]);
 
 						$params['org_img'.substr($field_name,-1)] = $files['name'];	
 						//解決中文無法上傳
-						$files['name'] = md5($files['name']);
+						$files['name'] = ($files['name']);
+						// $files['name'] = md5($files['name']);
 
 						$upload_file_name = $dir_path.'/'.$files["name"];
 						// unlink($id.'_'.$files["name"]);
 						move_uploaded_file($files["tmp_name"],$upload_file_name);
+						chmod($upload_file_name, 0777);
+
+						//============在傳一次縮圖 1280x720
+					
+						// 取得上傳圖片
+						$src = imagecreatefromjpeg($upload_file_name);
+
+				        switch ($files['type']) {
+				            case 'image/jpeg': $ext = ".jpg"; break;
+				            case 'image/png': $ext = ".png"; break;
+				            default: $ext = ''; break;
+				        }
+
+				        $newwidth = "1280";
+				        $newheight = "720";
+				        // Load
+						$thumb = imagecreatetruecolor($newwidth, $newheight);
+
+						// 開始縮圖
+						imagecopyresampled($thumb, $src, 0, 0, 0, 0, $newwidth, $newheight, $size[0], $size[1]);
+						// $source = imagecreatefromjpeg($url.'/'.$files['name']);//  /tmp/phpxOA1TK
+
+						// 儲存縮圖到指定  目錄
+						imagejpeg($thumb, $dir_prefix_log.$files['name']);
+						chmod($dir_prefix_log.$files['name'], 0777);
+						
+	 					//=======================
 
 						//需把圖片轉成 file or base64 or URL
 

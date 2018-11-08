@@ -1,1 +1,0 @@
-sql:SELECT * FROM inventory_transfer WHERE (1=1)  ORDER BY inventory_transfer.inventory_transfer_date DESC , inventory_transfer.code DESC  LIMIT 0,20
