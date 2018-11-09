@@ -1,3 +1,25 @@
+作者
+分類
+圖可能會有3張
+建立時間人員
+修改時間人員
+
+天文類
+水陸路程類
+寺廟類
+江河湖渠類
+行宮類
+其他類
+建築類
+軍務戰爭類
+陵墓類
+輿地類
+礦場類
+名勝類
+鐵路類
+
+
+
 ALTER TABLE `user`
 	ADD COLUMN `status` INT(10) NULL DEFAULT '1' AFTER `description`;
 
@@ -6,11 +28,11 @@ CREATE TABLE `pic_type` (
 	`item_index` INT(11) NULL DEFAULT '1',
 	`type_name` VARCHAR(256) NOT NULL COMMENT '類別名稱',
 	`description` LONGTEXT NULL COMMENT '備註',
-	`create_id` VARCHAR(20) NOT NULL COMMENT '建立者ID',
-	`create_name` VARCHAR(20) NOT NULL,
+	`create_id` VARCHAR(36) NOT NULL COMMENT '建立者ID',
+	`create_name` VARCHAR(256) NOT NULL,
 	`create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`modify_id` VARCHAR(20) NULL DEFAULT NULL,
-	`modify_name` VARCHAR(20) NULL DEFAULT NULL,
+	`modify_id` VARCHAR(36) NULL DEFAULT NULL,
+	`modify_name` VARCHAR(256) NULL DEFAULT NULL,
 	`modify_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 )
@@ -18,3 +40,39 @@ COMMENT='圖片類別'
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
+
+INSERT pic_type VALUES
+('1',1,"天文類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('2',1,"水陸路程類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('3',1,"寺廟類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('4',1,"江河湖渠類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('5',1,"行宮類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('6',1,"其他類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('7',1,"建築類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('8',1,"軍務戰爭類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('9',1,"陵墓類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('10',1,"輿地類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('11',1,"礦場類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('12',1,"名勝類","",'admin','系統管理者',now(),'admin','系統管理者',now()),
+('13',1,"鐵路類","",'admin','系統管理者',now(),'admin','系統管理者',now());
+
+ALTER TABLE `pic`
+	ADD COLUMN `img_file_path2` VARCHAR(2048) NULL DEFAULT NULL AFTER `org_img1`,
+	ADD COLUMN `org_img2` TEXT NULL AFTER `img_file_path2`,
+	ADD COLUMN `img_file_path3` VARCHAR(2048) NULL DEFAULT NULL AFTER `org_img2`,
+	ADD COLUMN `org_img3` TEXT NULL AFTER `img_file_path3`,
+	ADD COLUMN `pic_type_id` INT(10) NULL COMMENT '類別id' AFTER `height`,
+	ADD COLUMN `create_id` VARCHAR(36) NULL DEFAULT NULL COMMENT '建立者ID' AFTER `description`,
+	ADD COLUMN `create_name` VARCHAR(256) NULL DEFAULT NULL AFTER `create_id`,
+	ADD COLUMN `modify_id` VARCHAR(36) NULL DEFAULT NULL AFTER `create_time`,
+	ADD COLUMN `modify_name` VARCHAR(256) NULL DEFAULT NULL AFTER `modify_id`,
+	ADD COLUMN `modify_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `modify_name`;
+
+
+ALTER TABLE `pic`
+	CHANGE COLUMN `width` `width_1` VARCHAR(10) NULL DEFAULT NULL COMMENT '原始檔寬' AFTER `org_img1`,
+	CHANGE COLUMN `height` `height_1` VARCHAR(10) NULL DEFAULT NULL COMMENT '原始檔高' AFTER `width_1`,
+	ADD COLUMN `width_2` VARCHAR(10) NULL DEFAULT NULL AFTER `org_img2`,
+	ADD COLUMN `height_2` VARCHAR(10) NULL DEFAULT NULL AFTER `width_2`,
+	ADD COLUMN `width_3` VARCHAR(10) NULL DEFAULT NULL AFTER `org_img3`,
+	ADD COLUMN `height_3` VARCHAR(10) NULL DEFAULT NULL AFTER `width_3`;

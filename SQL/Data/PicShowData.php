@@ -26,6 +26,16 @@ $dir_prefix_log = '../../thumb/';;
 
 
 if($type=='select'){
+	
+	//圖片類型
+	$sql_pic_type = " SELECT * FROM pic_type WHERE (1=1) ";
+	$rs_pic_type = query($sql_pic_type);
+	$pic_type = fetch_array($rs_pic_type);
+	$aPicTypeArr = array();
+	
+	foreach ($pic_type as $key => $value) {
+		$aPicTypeArr[$pic_type[$key]['id']] = $pic_type[$key]['type_name'];
+	}
 
 	// sql_log($file_name,'start:'.date('Y-m-d H:i:s')."\r\n");
 	$sql = 'SELECT *'
@@ -62,6 +72,11 @@ if($type=='select'){
 	$rs = query($sql);
 	$arr = fetch_array($rs);
 
+	//圖片類型
+	foreach ($arr as $key => $value) {
+		$arr[$key]['pic_type_name']  = $aPicTypeArr[$value['pic_type_id']];
+	}
+
 	// sql_log($file_name,'end:'.date('Y-m-d H:i:s')."\r\n");
 }else if($type=='select_count'){
 
@@ -97,14 +112,27 @@ if($type=='select'){
 
 	extract($params);
 
-    $img_file = $params['img_file_path1'];	 
-    $size = getimagesize($img_file["tmp_name"]);
+    
 
 	// sql_log($file_name,serialize($params));
 	$check_name = getColumnValue($table_name,'pic_name','pic_name='.SQLStr($pic_name));
 	if($check_name!=''){
 
 		$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
+	}
+
+	//確認圖片
+	$img_1 = $params['img_file_path1'];
+	$img_2 = $params['img_file_path2'];
+	$img_3 = $params['img_file_path3'];
+	
+	$x = (!empty($img_1['tmp_name']))?4:0;
+	$y = (!empty($img_2['tmp_name']))?2:0;
+	$z = (!empty($img_3['tmp_name']))?1:0;
+	
+	$check_pic = $x+$y+$z;
+	if($check_pic==0 || $check_pic==1 || $check_pic==2 || $check_pic==3 || $check_pic==5){
+		$errMsg = _('圖片上傳有缺').' '._('不允許儲存').'!';
 	}
 	// if($print_sql)sql_log($file_name,"cp");
 
@@ -115,6 +143,9 @@ if($type=='select'){
 		
 		query('BEGIN');
 
+		//確認圖片
+		$img_file_1 = $params['img_file_path1'];	 
+	    $size_1 = getimagesize($img_file_1["tmp_name"]);
 		
 
 		//上傳目錄
@@ -162,6 +193,9 @@ if($type=='select'){
 
 				$upload_file_name='';
 				if($files['name']!=''){
+
+					$img_file = $params[$field_name];	 
+	    			$size = getimagesize($img_file["tmp_name"]);
 
 					$params['org_img'.substr($field_name,-1)] = $files['name'];	
 					//解決中文無法上傳
@@ -214,44 +248,48 @@ if($type=='select'){
 					
 
 					chmod($dir_prefix_log.$files['name'], 0777);
- 					//=======================
+ 					
+					// 圖片寬高
+					$params[$field_name] = $files['name'];	
 
-					//需把圖片轉成 file or base64 or URL
-
-					//////////////////////////////
-					// 上傳圖片至 imgur 
-					//////////////////////////////
-
-		   //          $im = file_get_contents($upload_file_name);
-		   //          $imdata = base64_encode($im);   
-
-		   //        	$ii = new Pic_Interface('Imgur');
-					// $tmp_img_arr = array('image'=>$imdata,'type'=>'base64');
-					// $ii -> setParams($tmp_img_arr);
-					// $return_arr = $ii->connectInterface('upload_image',true);
+					$owidth  = $size[0]; 
+					$oheight = $size[1];
 					
-
-					// if($pic_link==''){
-					// 	$pic_link = $return_arr['data']['link'];
-
-					// 	if($print_sql)sql_log($file_name,serialize($return_arr));
+					$w_name = "width_".substr($field_name,-1);
+					$h_name = "height_".substr($field_name,-1);
+					
+					// if($field_name=="img_file_path1"){
+					// 	$w_name = "width_1";
+					// 	$h_name = "height_1";
+					// }else if($field_name=="img_file_path2"){
+					// 	$w_name = "width_2";
+					// 	$h_name = "height_2";
+					// }else if($field_name=="img_file_path3"){
+					// 	$w_name = "width_3";
+					// 	$h_name = "height_3";
 					// }
-
+					$params[$w_name] = $owidth;	
+					$params[$h_name] = $oheight;
+					// 圖片寬高end
+				}else{
+					$params[$field_name]="";
 				}
-				$params[$field_name] = $files['name'];	
 				
-			}else if(like($field_name,'width')){
+
+			}
+			/*
+			else if(like($field_name,'width')){
 				// $files = $params['img_file_path1'];
-				// $size = getimagesize($files["tmp_name"]);
-				$owidth  = $size[0]; 
+				// $size_1 = getimagesize($files["tmp_name"]);
+				$owidth  = $size_1[0]; 
 				$params[$field_name] = $owidth;	
 
 			}else if(like($field_name,'height')){
 				// $files = $params['img_file_path1'];
-				// $size = getimagesize($files["tmp_name"]);
-				$oheight = $size[1];
+				// $size_1 = getimagesize($files["tmp_name"]);
+				$oheight = $size_1[1];
 				$params[$field_name] = $oheight;	
-			}
+			}*/
 				
 			$sql_value .= SQLStr($params[$field_name]);	
 			
@@ -301,8 +339,9 @@ if($type=='select'){
 	
 	$id=$master_id;
 
-$files = $params['img_file_path1'];	 
-$size = getimagesize($files["tmp_name"]);
+// $files = $params['img_file_path1'];	 
+// $size = getimagesize($files["tmp_name"]);
+
 	// $check_code = getColumnValue($table_name,'code','code='.SQLStr($code).' AND id !='.SQLStr($id));
 	// if($check_code!=''){
 
@@ -397,6 +436,9 @@ $size = getimagesize($files["tmp_name"]);
 					
 					$files = $params[$field_name];
 
+					$img_file = $params[$field_name];	 
+	    			$size = getimagesize($img_file["tmp_name"]);
+
 					$upload_file_name='';
 					if($files['name']!=''){
 
@@ -413,13 +455,25 @@ $size = getimagesize($files["tmp_name"]);
 						//============在傳一次縮圖 1280x720
 					
 						// 取得上傳圖片
-						$src = imagecreatefromjpeg($upload_file_name);
+						// $src = imagecreatefromjpeg($upload_file_name);
 
 				        switch ($files['type']) {
-				            case 'image/jpeg': $ext = ".jpg"; break;
-				            case 'image/png': $ext = ".png"; break;
-				            default: $ext = ''; break;
-				        }
+			            case 'image/jpeg': 
+			            	$ext = ".jpg"; 
+							
+							// 取得上傳圖片
+			            	$src = imagecreatefromjpeg($upload_file_name);
+			            	break;
+			            case 'image/png': 
+			            	$ext = ".png"; 
+			            	// 取得上傳圖片
+			            	$src = imagecreatefrompng($upload_file_name);
+			            break;
+			            default: 
+			            	$ext = ''; 
+
+			            break;
+			        }
 
 				        $newwidth = "1280";
 				        $newheight = "720";
@@ -431,43 +485,48 @@ $size = getimagesize($files["tmp_name"]);
 						// $source = imagecreatefromjpeg($url.'/'.$files['name']);//  /tmp/phpxOA1TK
 
 						// 儲存縮圖到指定  目錄
-						imagejpeg($thumb, $dir_prefix_log.$files['name']);
+						if($files['type']=="image/jpeg"){
+							imagejpeg($thumb, $dir_prefix_log.$files['name']);
+						}else if($files['type']=="image/png"){
+							imagepng($thumb, $dir_prefix_log.$files['name']);
+						}
+					
 						chmod($dir_prefix_log.$files['name'], 0777);
 						
 	 					//=======================
 
-						//需把圖片轉成 file or base64 or URL
+						// 圖片寬高
+						$params[$field_name] = $files['name'];	
 
-						//////////////////////////////
-						// 上傳圖片至 imgur 
-						//////////////////////////////
+						$owidth  = $size[0]; 
+						$oheight = $size[1];
+												
+						$w_name = "width_".substr($field_name,-1);
+						$h_name = "height_".substr($field_name,-1);
 
-						   // $im = file_get_contents($upload_file_name);
-						   // $imdata = base64_encode($im);   
-
-						   // $ii = new Pic_Interface('Imgur');
-						// $tmp_img_arr = array('image'=>$imdata,'type'=>'base64');
-						// $ii -> setParams($tmp_img_arr);
-						// $return_arr = $ii->connectInterface('upload_image',true);
+						$params[$w_name] = $owidth;	
+						$params[$h_name] = $oheight;
+						// 圖片寬高end
 						
+						$params[$field_name] = $files['name'];	
 
-						// if($pic_link==''){
-						// 	$pic_link = $return_arr['data']['link'];
-
-						// 	if($print_sql)sql_log($file_name,serialize($return_arr));
-						// }
+					}else{
+						$params[$field_name]="";
 					}
-					$params[$field_name] = $files['name'];	
 
 					$update_sql .= ' = ';
 					$update_sql .= SQLStr($params[$field_name]);
 					$update_sql .= ',';
 
-					$update_sql .= 'org_img'.substr($field_name,-1).' = '.SQLStr($params['org_img'.substr($field_name,-1)]).',';
+					$update_sql .= 'width_'.substr($field_name,-1).' = '.SQLStr($params['width_'.substr($field_name,-1)]).',';
+					$update_sql .= 'height_'.substr($field_name,-1).' = '.SQLStr($params['height_'.substr($field_name,-1)]).',';
+
 
 				}//end if isset
 
-			}else if(like($field_name,'width')){
+			}
+			/*
+			else if(like($field_name,'width')){
 
 				$update_sql .= $field_name;
 
@@ -492,7 +551,7 @@ $size = getimagesize($files["tmp_name"]);
 				$update_sql .= ' = ';
 				$update_sql .= SQLStr($params[$field_name]);	
 				$update_sql .= ',';	
-			}
+			}*/
 
 
 			$i++;
@@ -516,6 +575,7 @@ $size = getimagesize($files["tmp_name"]);
 
 		query('COMMIT');
 	}//end if err_msg
+	$return_str = $id;
 
 
 }else if($type=='delete'){

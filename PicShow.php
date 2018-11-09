@@ -18,8 +18,19 @@
 	$table_width = '95%';
 
 
+	// 建立下拉選單
 	$select_arr = array(
+		'pic_type' => array(
+			'obj_id'=>'pic_type_id',
+			'value_col'=>'id',
+			'text_col'=>'type_name',
+			'where_cond'=>'(1=1) ORDER BY id',
+			// 'empty_value' => '----------'
+			'empty_value'=> ''
+		),
+
 		
+
 	);
 
 ?>
@@ -57,10 +68,10 @@
 		 	columns:[[
 		        {field:'id',title:'<?php echo _('編號') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'pic_name',title:'<?php echo _('名稱') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'pic_type_name',title:'<?php echo _('類別') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'description',title:'<?php echo _('描述') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'create_time',title:'<?php echo _('建立時間') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'width',title:'<?php echo _('原始檔寬') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
-		        {field:'height',title:'<?php echo _('原始檔高') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
+		        {field:'width_1',title:'<?php echo _('原始檔寬') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
+		        {field:'height_1',title:'<?php echo _('原始檔高') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
 		        {field:'img_file_path1',title:'<?php echo _('圖片') ?>',width:'',align:'center',halign:'center',sortable:true,sortOrder:'asc',
 	    			formatter:function(value,row){
 	    				var has_pic = false;
@@ -86,6 +97,11 @@
 	    				return (has_pic)?'<img height="100" width="100" src="./upload/'+img_url+' " />':'';
 					}
 		    	},
+
+		        {field:'create_name',title:'<?php echo _('建立者') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'create_time',title:'<?php echo _('建立時間') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'modify_name',title:'<?php echo _('修改者') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'modify_time',title:'<?php echo _('修改時間') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 
 		        // {field:'name',title:'Name',width:100},
 		        // {field:'price',title:'Price',width:100,align:'right'}
@@ -480,16 +496,19 @@
 		$('#img_dlg').dialog('open').dialog('setTitle','<?php echo _('圖片') ?>');
 		// $('#img').attr('src',pic);
 
+		
 		for(var i=1;i<=5;i++){
 			var img_id = '#img'+i;
 			
 			if(row['img_file_path'+i]!=undefined){
 				var src = 'upload/'+row['img_file_path'+i];	
-				// var src = 'upload/'+row.id+'/'+row['img_file_path'+i];	
+				// var src = 'upload/'+row.id+'/'+row['img_file_path'+i];
+				
 			}else{
 				var src = '';
+				
 			}
-
+		
 			$(img_id).attr('src',src);
 		}
 	}
@@ -574,16 +593,46 @@
 					</td>
 				</tr>
 
-				
 				<tr>
 					<td >
-						<label><?php echo _('商品圖片') ?>:</label>
+						<label><?php echo _('類別') ?>:</label>
+					</td>
+					<td>
+						<input id='pic_type_id' name="pic_type_id" class="easyui-combobox input_type" />
+						<span id='pic_type_name_disp' name='pic_type_name_disp' class='disp_type' ></span>
+					</td>
+
+				</tr>
+
+				<tr>
+					<td >
+						<label><?php echo _('商品圖片') ?>1:</label>
 					</td>
 					<td colSpan=3>
 						<input id=img_file_path1 name="img_file_path1" class="easyui-filebox"  data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%">
 						<!-- <a href="javascript:clearFilePath('img_file_path1');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
 					</td>
 				</tr>
+
+				<tr>
+					<td >
+						<label><?php echo _('商品圖片') ?>2:</label>
+					</td>
+					<td colSpan=3>
+						<input id=img_file_path2 name="img_file_path2" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />
+						<!-- <a href="javascript:clearFilePath('img_file_path2');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
+					</td>
+				</tr>
+				<tr>
+					<td >
+						<label><?php echo _('商品圖片') ?>3:</label>
+					</td>
+					<td colSpan=3>
+						<input id="img_file_path3" name="img_file_path3" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />
+						<!-- <a href="javascript:clearFilePath('img_file_path3');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
+					</td>
+				</tr>
+
 				<?php /*
 				<tr>
 					<td >
@@ -626,8 +675,11 @@
 					<td >
 						<label><?php echo _('備註') ?>:</label>
 					</td>
-					<td colSpan=3>
-						<input id="description" name="description" class="easyui-textbox"  multiline="true"  style='width:100%' />
+					<td colSpan=3 >
+						<input id="description" name="description" class="easyui-textbox"  multiline="true"  style='width:300px;height:300px' />
+						<!-- <textarea cols="50" rows="5" id="description" name="description" class="easyui-textbox">
+						</textarea> -->
+
 					</td>
 					
 				</tr>
@@ -657,16 +709,18 @@
 	<div id='img_dlg' class='easyui-dialog' style="<?php echo long_pic_dialog ?>" closed="true" buttons="#dlg-buttons" resizable=true  modal=true shadow=false  >
 		<table>
 			<tr>
-				<td width=20% align=center >圖片</td>
-				<!-- <td width=20% align=center >圖片2</td>
-				<td width=20% align=center >圖片3</td>
+				<td width=20% align=center >圖片1</td>
+				<td width=20% align=center>圖片2</td>
+				<td width=20% align=center>圖片3</td>
+				<!-- 
 				<td width=20% align=center >圖片4</td>
 				<td width=20% align=center >圖片5</td> -->
 			</tr>
 			<tr>
 				<td><img src='' width='100%'  id='img1' /></td>
-				<!-- <td><img src='' width='100%'  id='img2' /></td>
+				<td><img src='' width='100%'  id='img2' /></td>
 				<td><img src='' width='100%'  id='img3' /></td>
+				<!-- 
 				<td><img src='' width='100%'  id='img4' /></td>
 				<td><img src='' width='100%'  id='img5' /></td> -->
 			</tr>
