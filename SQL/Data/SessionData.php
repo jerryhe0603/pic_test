@@ -5,7 +5,7 @@ $user_password = $params['user_password'];
 
 // $table_name = 'user';
 
-$sql = 'SELECT * FROM user WHERE user_id= '.SQLStr($user_account).' AND password='.SQLStr($user_password);
+$sql = 'SELECT * FROM user WHERE status=1 AND user_id= '.SQLStr($user_account).' AND password='.SQLStr($user_password);
 
 if($print_sql){
 	echo $sql;

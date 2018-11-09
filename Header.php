@@ -70,8 +70,18 @@
 	</td>
 	<td valign="center" class=navigation>
 		<ul class=navigation >
+			<?php if ($_SESSION['user_id'] =="admin"){ ?>
+				<li>
+					<a href='./User.php'>使用者管理</a>
+				</li>
+			<?php } ?>
 			<li>
-				<a href='javascript:logout();' style='font-size:18px;font-weight:bold;'><?php echo _('登出') ?></a>
+				<a href='./PicShow.php'>圖片管理</a>
+			</li>
+
+			<li>
+				<a href='javascript:logout();'><?php echo _('登出') ?></a>
+				<!-- <a href='javascript:logout();' style='font-size:18px;font-weight:bold;'><?php echo _('登出') ?></a> -->
 			</li>
 		</ul>
 	</td>
