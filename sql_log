@@ -164,7 +164,7 @@ COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 INSERT user VALUES
-('admin','系統管理者',MD5('admin'),null,'','1','admin','系統管理者',now(),'admin','系統管理者',now()),
+('admin','系統管理者',MD5('admin'),null,'','1','admin','系統管理者',now(),'admin','系統管理者',now());
 
 
 

@@ -10,74 +10,92 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<title>後台管理系統</title>
 	<meta charset="UTF-8">
-	<title><?php echo SYSTEM_NAME ?></title>
-
-	<link rel=stylesheet type="text/css" href="css/theme/default/Default.css">
-
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
-	<center>
-		<h4><?php echo SYSTEM_NAME ?></h4>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('images/bg.jpg');">
+			<div class="wrap-login100 p-t-30 p-b-50">
+				<span class="login100-form-title p-b-41">
+					登入
+				</span>
+				<!-- <form class="login100-form validate-form p-b-33 p-t-5"> -->
+				<form name=form1 action='index.php'  method='POST' target='_self' class="login100-form validate-form p-b-33 p-t-5">
+					<?php
+						if(isset($_REQUEST['err_code'])){
 
+							$err_msg=$error_code_arr[$_REQUEST['err_code']];
+							echo '<font color=red>'.$err_msg.'</font>';
+						}
+					?>
 
-		<form name=form1 action='index.php'  method='POST' target='_self'>
-			<?php
-				if(isset($_REQUEST['err_code'])){
+					<div class="wrap-input100 validate-input" data-validate = "Enter user_account">
+						<input class="input100" type="text" name="user_account" placeholder="Account">
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+					</div>
 
-					$err_msg=$error_code_arr[$_REQUEST['err_code']];
-					echo '<font color=red>'.$err_msg.'</font>';
-				}
-			?>
-			<table border=0	>
-			<tr>
-				<td><?php echo _('帳號') ?>: </td>
-				<td><input type='text' name='user_account' value='' required /></td>
-			</tr>
+					<div class="wrap-input100 validate-input" data-validate="Enter user_password">
+						<input class="input100" type="password" name="user_password" placeholder="Password">
+						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+					</div>
 
-			<tr>
-				<td><?php echo _('密碼') ?>: </td>
-				<td><input type='password' name='user_password' value='' required  /></td>
-			</tr>
-			<!-- <tr>
-				<td><?php echo _('語系') ?>: </td>
-				<td>
-					<select name='lang' >
-						<option value='tw' selected >中文</option>
-						<option value='en'  >English</option>
-					</select>
-				</td>
+					<div class="container-login100-form-btn m-t-32">
+						<button class="login100-form-btn">
+							登入
+						</button>
+					</div>
 
-			</tr> -->
-			<tr>
-				<td colspan="2" align=center >
-					<input type='submit' value='<?php echo _('登入') ?> ' />
-				</td>
-			</tr>
-			<?php /*
-			<tr>
-				<td colspan="2" align=center >
-					<BR>
-					<img src='image/logo.jpg' width=30> <font size=2>Powered by <?php echo COMPANY_ENG_NAME ?></font>
-				</td>
-			</tr>*/ ?>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 
-				
-			</table>
-		</form>
-
-		<!-- <div style='padding-top:20%;padding-left:40% '>
-			<img src='image/logo_no_bg.png' />
-		</div> -->
-
-		<!-- <div class=login  >
-		</div> -->
-	</center>
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 
 </body>
 </html>
-
