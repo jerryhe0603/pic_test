@@ -136,7 +136,7 @@
 	});
 
 	function Add(form_obj){
-		<?php $action ="add"  ?>
+		
 		// console.log($('#'+form_id));
 		$('#'+form_obj.form_id).form('clear');
 		// $('#'+form_obj.form_id).form('resetDirty');
@@ -149,7 +149,7 @@
 	}
 	function Edit(form_obj){
 		var row = $('#'+form_obj.dg_id).datagrid('getSelected');
-		<?php $action ="edit"  ?>
+		
 		if (row){
 
 			// $('#'+form_obj.form_id).form({dirty:true});//只更新有改過的地方
@@ -162,8 +162,11 @@
 
 			selectReload(form_obj);
 			
+			$('#user_id').textbox('disable', 'disable');//帳號不能改
+			$('#password').textbox('setValue', '');//密碼空白
 
 			$('#'+form_obj.dlg_id).dialog('open').dialog('setTitle','<?php echo _('修改') ?>');
+
 		}else{
 			$.messager.show({
 				title: '<?php echo _('未選擇資料') ?>',
@@ -549,11 +552,7 @@
 						<label><?php echo _('帳號') ?>:</label>
 					</td>
 					<td>
-						<?php if($action=="add"){ ?>	
-							<input id="user_id" name="user_id" class="easyui-textbox" required="true"/>
-						<?php }else{ ?>
-							<input id="user_id" name="user_id" class="easyui-textbox" disabled="disabled" />
-						<?php } ?>
+						<input id="user_id" name="user_id" class="easyui-textbox" required="true"/>
 					</td>
 				</tr>
 
@@ -562,11 +561,7 @@
 						<label><?php echo _('密碼') ?>:</label>
 					</td>
 					<td>	
-						<?php if($action=="add"){ ?>
-							<input id="password" name="password" class="easyui-textbox" required="true"/>
-						<?php }else{ ?>
-							<input id="new_password" name="new_password" class="easyui-textbox" value="" />
-						<?php } ?>
+						<input id="password" name="password" class="easyui-textbox"/>
 					</td>
 				</tr>
 

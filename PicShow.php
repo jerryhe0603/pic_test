@@ -606,7 +606,7 @@
 
 				<tr>
 					<td >
-						<label><?php echo _('商品圖片') ?>1:</label>
+						<label><?php echo _('地圖圖片') ?>1:</label>
 					</td>
 					<td colSpan=3>
 						<input id=img_file_path1 name="img_file_path1" class="easyui-filebox"  data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%">
@@ -616,7 +616,7 @@
 
 				<tr>
 					<td >
-						<label><?php echo _('商品圖片') ?>2:</label>
+						<label><?php echo _('地圖圖片') ?>2:</label>
 					</td>
 					<td colSpan=3>
 						<input id=img_file_path2 name="img_file_path2" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />
@@ -625,7 +625,7 @@
 				</tr>
 				<tr>
 					<td >
-						<label><?php echo _('商品圖片') ?>3:</label>
+						<label><?php echo _('地圖圖片') ?>3:</label>
 					</td>
 					<td colSpan=3>
 						<input id="img_file_path3" name="img_file_path3" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />

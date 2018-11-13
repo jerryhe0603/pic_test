@@ -1,6 +1,6 @@
 <?php
 
-$print_sql=1;
+$print_sql=0;
 $errMsg = '';
 $file_name = '../../log/'.basename(__FILE__).date('YmdHis').'.txt';
 
@@ -157,6 +157,10 @@ if($type=='select'){
 				
 				$params[$field_name] = MD5($password);	
 				
+			}else if(like($field_name,'status')){
+				
+				$params[$field_name] = 1;	
+				
 			}
 				
 			$sql_value .= SQLStr($params[$field_name]);	
@@ -205,7 +209,7 @@ if($type=='select'){
 	// 	$errMsg = _('編號').' '._('重複,不允許儲存').'!';
 	// }else{
 
-		$check_name = getColumnValue($table_name,'user_name','user_name='.SQLStr($user_name).' AND user_id !='.SQLStr($user_id));
+		$check_name = getColumnValue($table_name,'user_name','user_name='.SQLStr($user_name).' AND user_id !='.SQLStr($id));
 		if($check_name!=''){
 
 			$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
@@ -234,8 +238,8 @@ if($type=='select'){
 			$field_name = $field->name;
 
 			if($field_name=='user_id')continue;
-			if($field_name=='password' && $new_password=="")continue;
-			if($field_name!='id' && !like($field_name,'create_') && $field_name!='password'  ){
+			if($field_name=='password' && $password=="")continue;
+			if($field_name!='user_id' && !like($field_name,'create_') && $field_name!='password' && $field_name!='status' ){
 				$update_sql .= $field_name;
 			
 				if(!isset($params[$field_name])){
@@ -263,13 +267,25 @@ if($type=='select'){
 				$update_sql .= ',';
 
 			}else if(like($field_name,'password')){
-
-				$params[$field_name] = MD5($new_password);
+				$update_sql .= $field_name;
+				$params[$field_name] = MD5($password);
 
 
 				$update_sql .= ' = ';
 					
 				$update_sql .= SQLStr($params[$field_name]);	
+				
+				$update_sql .= ',';
+
+			}else if(like($field_name,'status')){
+				$update_sql .= $field_name;
+
+				$params[$field_name] = 1;
+
+
+				$update_sql .= ' = ';
+					
+				$update_sql .= SQLNum($params[$field_name]);	
 				
 				$update_sql .= ',';
 
@@ -281,7 +297,7 @@ if($type=='select'){
 
 		$update_sql = substr($update_sql,0, -1);
 
-		$update_sql .= ' WHERE id = '.SQLStr($id);
+		$update_sql .= ' WHERE user_id = '.SQLStr($id);
 
 			if($print_sql)sql_log($file_name,'params:'.serialize($params));
 			if($print_sql)sql_log($file_name,$update_sql);
@@ -293,7 +309,7 @@ if($type=='select'){
 
 		query('COMMIT');
 	}//end if err_msg
-
+	$return_str = $id;
 
 }else if($type=='delete'){
 
