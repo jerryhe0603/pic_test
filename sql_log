@@ -167,5 +167,5 @@ INSERT user VALUES
 ('admin','系統管理者',MD5('admin'),null,'','1','admin','系統管理者',now(),'admin','系統管理者',now());
 
 
-
+git clone https://github.com/jerryhe0603/pic_test.git Npm
 

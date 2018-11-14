@@ -85,7 +85,7 @@
 					}
 		    	},
 
-		    	{field:'img_file_path',title:'<?php echo _('縮圖') ?>',width:'30%',align:'center',halign:'center',sortable:true,sortOrder:'asc',
+		    	{field:'img_file_path',title:'<?php echo _('縮圖') ?>',width:'10%',align:'center',halign:'center',sortable:true,sortOrder:'asc',
 	    			formatter:function(value,row){
 	    				var has_pic = false;
 	    				for(var i=1;i<=5;i++){
@@ -94,7 +94,7 @@
 	    					}	
 	    				}
 	    				var img_url= row['img_file_path1'];
-	    				return (has_pic)?'<img height="100" width="100" src="./upload/'+img_url+' " />':'';
+	    				return (has_pic)?'<img height="100px" width="100px" src="./upload/'+img_url+' " />':'';
 					}
 		    	},
 

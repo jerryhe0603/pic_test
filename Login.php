@@ -44,7 +44,7 @@
 		<div class="container-login100" style="background-image: url('images/bg.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					登入
+					後台管理系統
 				</span>
 				<!-- <form class="login100-form validate-form p-b-33 p-t-5"> -->
 				<form name=form1 action='index.php'  method='POST' target='_self' class="login100-form validate-form p-b-33 p-t-5">

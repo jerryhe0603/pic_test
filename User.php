@@ -509,7 +509,7 @@
 	    <a href="javascript:Add(stock_form_obj);" id='add_btn' class="easyui-linkbutton" iconCls="icon-add" plain="true" style='<?php echo form_toolbar_btn ?>;' ><?php echo _('新增') ?></a>
 	    <a href="javascript:Edit(stock_form_obj);" id='edit_btn' class="easyui-linkbutton" iconCls="icon-edit" plain="true" style='<?php echo form_toolbar_btn ?>;' ><?php echo _('修改') ?></a>
 	    <a href="javascript:Delete(stock_form_obj);" id='delete_btn' class="easyui-linkbutton" iconCls="icon-remove" plain="true" style='<?php echo form_toolbar_btn ?>;' ><?php echo _('刪除') ?></a>
-	    <a href="javascript:DetailReport();" id='report_btn' class="easyui-linkbutton" iconCls="icon-print" plain="true" style='<?php echo form_toolbar_btn ?>;' ><?php echo _('匯出') ?></a>
+	    <!-- <a href="javascript:DetailReport();" id='report_btn' class="easyui-linkbutton" iconCls="icon-print" plain="true" style='<?php echo form_toolbar_btn ?>;' ><?php echo _('匯出') ?></a> -->
 
 	    &nbsp;&nbsp;
 	   <!--  <input class="easyui-searchbox"  data-options="prompt:'查詢編號',searcher:doSearch" style="">
