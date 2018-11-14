@@ -64,7 +64,7 @@
 
   		var dg = $('#dg').datagrid({
 		 	url:'<?php echo EasyUI_DATA_PATH ?>',
-
+		 	nowrap: false,
 		 	columns:[[
 		        {field:'id',title:'<?php echo _('編號') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'pic_name',title:'<?php echo _('名稱') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
