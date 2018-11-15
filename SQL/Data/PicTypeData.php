@@ -148,6 +148,7 @@ if($type=='select'){
 					$params['modify_name']=$_SESSION['user_name'];
 				}else if($field_name=='create_time'){
 					$params[$field_name]=date('Y-m-d H:i:s');
+					$params['modify_time']=date('Y-m-d H:i:s');
 				}
 
 			}else if(like($field_name,'status')){
