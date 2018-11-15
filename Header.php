@@ -75,6 +75,11 @@
 					<a href='./User.php'>使用者管理</a>
 				</li>
 			<?php } ?>
+			<?php if ($_SESSION['user_id'] =="admin"){ ?>
+				<li>
+					<a href='./PicType.php'>圖片類別</a>
+				</li>
+			<?php } ?>
 			<li>
 				<a href='./PicShow.php'>圖片管理</a>
 			</li>

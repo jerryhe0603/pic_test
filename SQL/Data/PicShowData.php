@@ -369,7 +369,7 @@ if($type=='select'){
 }else if($type=='update'){
 
 	extract($params);
-	
+
 	$id=$master_id;
 
 // $files = $params['img_file_path1'];	 
@@ -389,24 +389,11 @@ if($type=='select'){
 		}
 	// }
 	// 
-	//確認圖片
-	$img_1 = $params['img_file_path1'];
-	$img_2 = $params['img_file_path2'];
-	$img_3 = $params['img_file_path3'];
-	
-	$x = (!empty($img_1['tmp_name']))?4:0;
-	$y = (!empty($img_2['tmp_name']))?2:0;
-	$z = (!empty($img_3['tmp_name']))?1:0;
-	
-	$check_pic = $x+$y+$z;
-	if($check_pic==0 || $check_pic==1 || $check_pic==2 || $check_pic==3 || $check_pic==5){
-		$errMsg = _('圖片上傳有缺').' '._('不允許儲存').'!';
-	}
 
 	//判斷多張圖片
 	if($img_1['name']!=""){
 		$tmp_img_name = $img_1['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name' AND id <> ".SQLStr($id);
+		$check_img_sql = " SELECT * FROM pic WHERE (org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name') AND id <> ".SQLStr($id);
 		$rs = query($check_img_sql);
 		$arr = fetch_array($rs);
 		if(count($arr)>0){
@@ -416,7 +403,7 @@ if($type=='select'){
 
 	if($img_2['name']!=""){
 		$tmp_img_name = $img_2['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name' AND id <> ".SQLStr($id);
+		$check_img_sql = " SELECT * FROM pic WHERE (org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name') AND id <> ".SQLStr($id);
 		$rs = query($check_img_sql);
 		$arr = fetch_array($rs);
 		if(count($arr)>0){
@@ -426,7 +413,7 @@ if($type=='select'){
 
 	if($img_3['name']!=""){
 		$tmp_img_name = $img_3['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name' AND id <> ".SQLStr($id);
+		$check_img_sql = " SELECT * FROM pic WHERE (org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name') AND id <> ".SQLStr($id);
 		$rs = query($check_img_sql);
 		$arr = fetch_array($rs);
 		if(count($arr)>0){
@@ -595,7 +582,7 @@ if($type=='select'){
 					$update_sql .= ' = ';
 					$update_sql .= SQLStr($params[$field_name]);
 					$update_sql .= ',';
-
+					$update_sql .= 'org_img'.substr($field_name,-1).'='.SQLStr($params['org_img'.substr($field_name,-1)]).',';
 					$update_sql .= 'width_'.substr($field_name,-1).' = '.SQLStr($params['width_'.substr($field_name,-1)]).',';
 					$update_sql .= 'height_'.substr($field_name,-1).' = '.SQLStr($params['height_'.substr($field_name,-1)]).',';
 
