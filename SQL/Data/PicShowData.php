@@ -37,6 +37,17 @@ if($type=='select'){
 		$aPicTypeArr[$pic_type[$key]['id']] = $pic_type[$key]['type_name'];
 	}
 
+	//選項名稱
+	$sql_select_item = " SELECT * FROM select_item WHERE (1=1) ";
+	$rs_select_item = query($sql_select_item);
+	$select_item = fetch_array($rs_select_item);
+	$aSelectItemArr = array();
+	
+	foreach ($select_item as $key => $value) {
+		$aSelectItemArr[$select_item[$key]['id']] = $select_item[$key]['name'];
+	}
+
+
 	// sql_log($file_name,'start:'.date('Y-m-d H:i:s')."\r\n");
 	$sql = 'SELECT *'
 		.' FROM '.$table_name
@@ -75,6 +86,11 @@ if($type=='select'){
 	//圖片類型
 	foreach ($arr as $key => $value) {
 		$arr[$key]['pic_type_name']  = $aPicTypeArr[$value['pic_type_id']];
+	}
+
+	//選項名稱
+	foreach ($arr as $key => $value) {
+		$arr[$key]['is_album_name']  = $aSelectItemArr[$value['is_album']];
 	}
 
 	// sql_log($file_name,'end:'.date('Y-m-d H:i:s')."\r\n");

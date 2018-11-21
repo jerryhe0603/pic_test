@@ -28,6 +28,15 @@
 			// 'empty_value' => '----------'
 			'empty_value'=> ''
 		),
+		'select_item' => array(
+			'obj_id'=>'is_album',
+			'value_col'=>'id',
+			'text_col'=>'name',
+			'where_cond'=>'(1=1) ORDER BY id',
+			// 'empty_value' => '----------'
+			'empty_value'=> ''
+		),
+
 
 		
 
@@ -68,8 +77,13 @@
 		 	columns:[[
 		        {field:'id',title:'<?php echo _('編號') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'pic_name',title:'<?php echo _('名稱') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'pic_type_name',title:'<?php echo _('類別') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'uniform_number',title:'<?php echo _('統一編號') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'format_type',title:'<?php echo _('版式類型') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'pic_size',title:'<?php echo _('尺寸') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'pic_type_name',title:'<?php echo _('類別') ?>',width:'5%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'description',title:'<?php echo _('描述') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'pic_no',title:'<?php echo _('圖片編號') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
+		        {field:'is_album_name',title:'<?php echo _('冊頁') ?>',width:'',align:'center',sortable:true,sortOrder:'asc' },
 		        {field:'width_1',title:'<?php echo _('原始檔寬') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
 		        {field:'height_1',title:'<?php echo _('原始檔高') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
 		        {field:'img_file_path1',title:'<?php echo _('圖片') ?>',width:'',align:'center',halign:'center',sortable:true,sortOrder:'asc',
@@ -403,12 +417,25 @@
 
 					var combo_id = combo_id_arr[c];
 					var combo_obj = $('#'+combo_id);
-					combo_obj.combobox({
-			    		data:eval('('+dataObj.val()+')'),
-			    		valueField:'<?php echo $value_col ?>',
-			    		textField:'<?php echo $text_col ?>',
-			    		width:'100%'
-			    	});
+					if(combo_id=="is_album"){
+						combo_obj.combobox({
+				    		data:eval('('+dataObj.val()+')'),
+				    		valueField:'<?php echo $value_col ?>',
+				    		textField:'<?php echo $text_col ?>',
+				    		width:'100%',
+				    		onChange: function (newValue, oldValue) {
+					          displayUpload(newValue);
+					        }
+			    		});
+					}else{
+						combo_obj.combobox({
+				    		data:eval('('+dataObj.val()+')'),
+				    		valueField:'<?php echo $value_col ?>',
+				    		textField:'<?php echo $text_col ?>',
+				    		width:'100%'
+			    		});
+					}
+					
 			    	// combo_obj.combobox('reload');					
 			    	var option_obj = combo_obj.combobox('options');	
 
@@ -526,6 +553,15 @@
 	}
 
 
+	function displayUpload(value){
+		if(value==1){
+			$('.pic_tr').show();
+		}else{
+			$('.pic_tr').hide();
+		}
+	}
+
+
 </script>
 
 
@@ -592,6 +628,42 @@
 						<input id="pic_name" name="pic_name" class="easyui-textbox" required="true"/>
 					</td>
 				</tr>
+				
+				<tr>
+					<td >
+						<label><?php echo _('統一編號') ?>:</label>
+					</td>
+					<td>	
+						<input id="uniform_number" name="uniform_number" class="easyui-textbox" required="true"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td >
+						<label><?php echo _('版式類型') ?>:</label>
+					</td>
+					<td>	
+						<input id="format_type" name="format_type" class="easyui-textbox" required="true"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td >
+						<label><?php echo _('尺寸') ?>:</label>
+					</td>
+					<td>	
+						<input id="pic_size" name="pic_size" class="easyui-textbox" required="true"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td >
+						<label><?php echo _('圖像編號') ?>:</label>
+					</td>
+					<td>	
+						<input id="pic_no" name="pic_no" class="easyui-textbox" required="true"/>
+					</td>
+				</tr>
 
 				<tr>
 					<td >
@@ -602,6 +674,20 @@
 						<span id='pic_type_name_disp' name='pic_type_name_disp' class='disp_type' ></span>
 					</td>
 
+				</tr>
+				
+				<tr>
+					<td >
+						<label><?php echo _('是否為冊頁') ?>:</label>
+					</td>
+					<td>	
+						<input id='is_album' name="is_album" class="easyui-combobox input_type" data-options="panelHeight:'auto',"  />
+						<span id='is_album_disp' name='is_album_disp' class='disp_type' ></span>
+						<!-- <select id="is_album" name="is_album" class="easyui-combobox" data-options="panelHeight:'auto'" style="width:200px;">
+						 	<option value="0" selected>否</option>
+						    <option value="1">是</option>
+						</select> -->
+					</td>
 				</tr>
 
 				<tr>
@@ -614,7 +700,7 @@
 					</td>
 				</tr>
 
-				<tr>
+				<tr class="pic_tr">
 					<td >
 						<label><?php echo _('地圖圖片') ?>2:</label>
 					</td>
@@ -623,7 +709,7 @@
 						<!-- <a href="javascript:clearFilePath('img_file_path2');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
 					</td>
 				</tr>
-				<tr>
+				<tr class="pic_tr">
 					<td >
 						<label><?php echo _('地圖圖片') ?>3:</label>
 					</td>

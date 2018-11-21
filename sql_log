@@ -172,3 +172,24 @@ ALTER TABLE `pic_type`
 
 git clone https://github.com/jerryhe0603/pic_test.git Npm
 
+
+ALTER TABLE `pic`
+	ADD COLUMN `uniform_number` VARCHAR(20) DEFAULT NULL COMMENT '統一編號' AFTER `pic_name`,
+	ADD COLUMN `format_type` VARCHAR(56) DEFAULT NULL COMMENT '版式類型' AFTER `uniform_number`,
+	ADD COLUMN `pic_size` VARCHAR(56) DEFAULT NULL COMMENT '尺寸' AFTER `format_type`,
+	ADD COLUMN `pic_no` VARCHAR(256) DEFAULT NULL COMMENT '圖像編號' AFTER `pic_size`,
+	ADD COLUMN `is_album` INT(10) NULL DEFAULT '0' COMMENT '是否為冊頁0:為否 1:是' AFTER `pic_no`;
+
+CREATE TABLE `select_item` (
+	`id` VARCHAR(10) NOT NULL  COMMENT '值',
+	`name` VARCHAR(1024) NOT NULL,
+	
+	PRIMARY KEY (`id`)
+)
+COMMENT='選擇的項目'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+INSERT select_item VALUES
+('0','否'),
+('1','是');
