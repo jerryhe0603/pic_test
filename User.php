@@ -145,7 +145,16 @@
 		$('#'+form_obj.type_id).val('insert');
 
 		selectReload(form_obj);
-   		$('#'+form_obj.dlg_id).dialog('open').dialog('setTitle','<?php echo _('新增') ?>');
+
+		$('#'+form_obj.dlg_id).dialog({
+										title: "<?php echo _('新增') ?>",
+										top:'40%'
+
+										});
+
+		$('#'+form_obj.dlg_id).dialog('open');
+
+   		// $('#'+form_obj.dlg_id).dialog('open').dialog('setTitle','<?php echo _('新增') ?>');
 	}
 	function Edit(form_obj){
 		var row = $('#'+form_obj.dg_id).datagrid('getSelected');
@@ -165,7 +174,15 @@
 			$('#user_id').textbox('disable', 'disable');//帳號不能改
 			$('#password').textbox('setValue', '');//密碼空白
 
-			$('#'+form_obj.dlg_id).dialog('open').dialog('setTitle','<?php echo _('修改') ?>');
+			$('#'+form_obj.dlg_id).dialog({
+										title: "<?php echo _('修改') ?>",
+										top:'40%'
+
+										});
+		
+			$('#'+form_obj.dlg_id).dialog('open');
+
+			// $('#'+form_obj.dlg_id).dialog('open').dialog('setTitle','<?php echo _('修改') ?>');
 
 		}else{
 			$.messager.show({

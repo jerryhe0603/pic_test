@@ -193,3 +193,6 @@ ENGINE=InnoDB
 INSERT select_item VALUES
 ('0','否'),
 ('1','是');
+
+ALTER TABLE `pic`
+	ADD COLUMN `make_age` VARCHAR(56) DEFAULT NULL COMMENT '製圖年代' AFTER `is_album`;

@@ -76,7 +76,8 @@
 		 	nowrap: false,
 		 	columns:[[
 		        {field:'id',title:'<?php echo _('編號') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'pic_name',title:'<?php echo _('名稱') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'pic_name',title:'<?php echo _('圖名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'make_age',title:'<?php echo _('製圖時代') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'uniform_number',title:'<?php echo _('統一編號') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'format_type',title:'<?php echo _('版式類型') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'pic_size',title:'<?php echo _('尺寸') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
@@ -198,7 +199,15 @@
 		$('#'+form_obj.type_id).val('insert');
 
 		selectReload(form_obj);
-   		$('#'+form_obj.dlg_id).dialog('open').dialog('setTitle','<?php echo _('新增') ?>');
+
+		$('#'+form_obj.dlg_id).dialog({
+										title: "<?php echo _('新增') ?>",
+										top:'40%'
+
+										});
+		$('#'+form_obj.dlg_id).dialog('open');
+
+   		// $('#'+form_obj.dlg_id).dialog('open').dialog('setTitle','<?php echo _('新增') ?>');
 	}
 	function Edit(form_obj){
 		var row = $('#'+form_obj.dg_id).datagrid('getSelected');
@@ -215,8 +224,13 @@
 
 			selectReload(form_obj);
 			
+			$('#'+form_obj.dlg_id).dialog({
+										title: "<?php echo _('修改') ?>",
+										top:'40%'
 
-			$('#'+form_obj.dlg_id).dialog('open').dialog('setTitle','<?php echo _('修改') ?>');
+										});
+			$('#'+form_obj.dlg_id).dialog('open');
+			// $('#'+form_obj.dlg_id).dialog('open').dialog('setTitle','<?php echo _('修改') ?>');
 		}else{
 			$.messager.show({
 				title: '<?php echo _('未選擇資料') ?>',
@@ -622,10 +636,19 @@
 				</tr> -->
 				<tr>
 					<td >
-						<label><?php echo _('名稱') ?>:</label>
+						<label><?php echo _('圖名') ?>:</label>
 					</td>
 					<td>	
 						<input id="pic_name" name="pic_name" class="easyui-textbox" required="true"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td >
+						<label><?php echo _('製圖時代') ?>:</label>
+					</td>
+					<td>	
+						<input id="make_age" name="make_age" class="easyui-textbox" required="true"/>
 					</td>
 				</tr>
 				
