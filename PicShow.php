@@ -24,7 +24,7 @@
 			'obj_id'=>'pic_type_id',
 			'value_col'=>'id',
 			'text_col'=>'type_name',
-			'where_cond'=>'(1=1) ORDER BY id',
+			'where_cond'=>'(1=1) ORDER BY item_index',
 			// 'empty_value' => '----------'
 			'empty_value'=> ''
 		),
@@ -75,7 +75,15 @@
 		 	url:'<?php echo EasyUI_DATA_PATH ?>',
 		 	nowrap: false,
 		 	columns:[[
-		        {field:'id',title:'<?php echo _('編號') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'id',title:'<?php echo _('編號') ?>',width:'',align:'left',sortable:true,
+		        	sorter:function(a,b){
+		        		if (parseFloat(a))a = parseFloat(a);
+						if (parseFloat(b))b = parseFloat(b);
+
+		        		return (a>b?1:-1);
+		        	} 
+
+		    	},
 		        {field:'pic_name',title:'<?php echo _('圖名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'make_age',title:'<?php echo _('製圖時代') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'uniform_number',title:'<?php echo _('統一編號') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },

@@ -56,6 +56,15 @@
 
 		 	columns:[[
 		        // {field:'id',title:'<?php echo _('ID') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'item_index',title:'<?php echo _('順序') ?>',width:'',align:'left',sortable:true,
+		        	sorter:function(a,b){
+		        		if (parseFloat(a))a = parseFloat(a);
+						if (parseFloat(b))b = parseFloat(b);
+
+		        		return (a>b?1:-1);
+		        	}
+
+		        },
 		        {field:'type_name',title:'<?php echo _('類別名稱') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 
 		        {field:'description',title:'<?php echo _('備註') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
@@ -558,6 +567,14 @@
 						<input id="code" name="code" class="easyui-textbox" required="true"/>
 					</td>
 				</tr> -->
+				<tr>
+					<td >
+						<label><?php echo _('順序') ?>:</label>
+					</td>
+					<td>
+						<input id="item_index" name="item_index" class="easyui-textbox" />
+					</td>
+				</tr>
 
 				<tr>
 					<td >

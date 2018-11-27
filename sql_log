@@ -172,7 +172,6 @@ ALTER TABLE `pic_type`
 
 git clone https://github.com/jerryhe0603/pic_test.git Npm
 
-
 ALTER TABLE `pic`
 	ADD COLUMN `uniform_number` VARCHAR(20) DEFAULT NULL COMMENT '統一編號' AFTER `pic_name`,
 	ADD COLUMN `format_type` VARCHAR(56) DEFAULT NULL COMMENT '版式類型' AFTER `uniform_number`,

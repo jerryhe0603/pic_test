@@ -111,11 +111,7 @@ if($type=='select'){
 
 	// $errMsg =123;
 	if($errMsg==''){
-		$sql_max_type =" SELECT MAX(item_index) as last_type FROM pic_type ";
-		$rs = query($sql_max_type);
-		$arr = fetch_array($rs);
-		// $errMsg = "幾個".$arr[0]['last_type']."+1=".($arr[0]['last_type']+1);
-		$last_type = ($arr[0]['last_type']+1);
+		
 		query('BEGIN');
 
 
@@ -160,13 +156,10 @@ if($type=='select'){
 				$params[$field_name] = 1;	
 				
 			}else if(like($field_name,'item_index')){
-				$params[$field_name] = $last_type;
+				
+				$params[$field_name] = 1;	
+				
 			}
-			// else if(like($field_name,'item_index')){
-				
-			// 	$params[$field_name] = 1;	
-				
-			// }
 				
 			$sql_value .= SQLStr($params[$field_name]);	
 
@@ -243,7 +236,7 @@ if($type=='select'){
 			$field_name = $field->name;
 
 			if($field_name=='id')continue;
-			// if($field_name=='item_index')continue;
+			if($field_name=='item_index')continue;
 			if($field_name!='id' && !like($field_name,'create_') && $field_name!='status' ){
 				$update_sql .= $field_name;
 			
@@ -306,32 +299,19 @@ if($type=='select'){
 	$return_str = $id;
 
 }else if($type=='delete'){
-	
 
 	extract($params);
 	
 	$id=$master_id;
+	query('BEGIN');
 
-	$sql = 'SELECT * FROM pic WHERE pic_type_id='.SQLStr($id);
-		$rs = query($sql);
-	// $arr = fetch_array($rs);
-	$rowcount=mysqli_num_rows($rs);
-	if($rowcount>0){
-		$errMsg = "不能刪除,此類別".$rowcount."個圖檔使用中";
-		// $errMsg = _('此類別圖檔使用中').'!';
-	}else{
-		query('BEGIN');
-
-		$sql = 'DELETE FROM pic_type WHERE id='.SQLStr($id);
-		//把圖檔狀態更改
-		// $sql = 'UPDATE pic_type SET status=2  WHERE id='.SQLStr($id);
-		// 	if($print_sql)sql_log($file_name,$sql);
-		query($sql);
+	//把人員狀態更改
+	$sql = 'UPDATE pic_type SET status=2  WHERE id='.SQLStr($id);
+		if($print_sql)sql_log($file_name,$sql);
+	query($sql);
 
 
-		query('COMMIT');
-	}
-	
+	query('COMMIT');
 
 }
 
