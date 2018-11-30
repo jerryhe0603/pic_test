@@ -79,9 +79,9 @@
 				<li>
 					<a href='./PicType.php'>圖片類別</a>
 				</li>
-				<li>
+				<!-- <li>
 					<a href='./PicTypeOrder.php'>圖片類別順序</a>
-				</li>
+				</li> -->
 			<?php } ?>
 			<li>
 				<a href='./PicShow.php'>圖片管理</a>

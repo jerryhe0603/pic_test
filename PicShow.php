@@ -85,12 +85,16 @@
 
 		    	},
 		        {field:'pic_name',title:'<?php echo _('圖名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'pic_name_en',title:'<?php echo _('圖名(英文)') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'make_age',title:'<?php echo _('製圖時代') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'make_age_en',title:'<?php echo _('製圖時代(英文)') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'uniform_number',title:'<?php echo _('統一編號') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'format_type',title:'<?php echo _('版式類型') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'format_type_en',title:'<?php echo _('版式類型(英文)') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'pic_size',title:'<?php echo _('尺寸') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'pic_type_name',title:'<?php echo _('類別') ?>',width:'5%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'description',title:'<?php echo _('描述') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'description_en',title:'<?php echo _('描述(英文)') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'pic_no',title:'<?php echo _('圖片編號') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
 		        {field:'is_album_name',title:'<?php echo _('冊頁') ?>',width:'',align:'center',sortable:true,sortOrder:'asc' },
 		        {field:'width_1',title:'<?php echo _('原始檔寬') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
@@ -326,7 +330,7 @@
 				url: '<?php echo EasyUI_DATA_PATH ?>',
 				queryParams:params,
 				onSubmit: function(){
-					return $(this).form('validate');
+					// return $(this).form('validate');
 				},
 				success: function(result){
 		
@@ -653,10 +657,28 @@
 
 				<tr>
 					<td >
+						<label><?php echo _('圖名(英文)') ?>:</label>
+					</td>
+					<td>	
+						<input id="pic_name_en" name="pic_name_en" class="easyui-textbox" required="true" validtype="english"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td >
 						<label><?php echo _('製圖時代') ?>:</label>
 					</td>
 					<td>	
 						<input id="make_age" name="make_age" class="easyui-textbox" required="true"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td >
+						<label><?php echo _('製圖時代(英文)') ?>:</label>
+					</td>
+					<td>	
+						<input id="make_age_en" name="make_age_en" class="easyui-textbox" required="true" validtype="english"/>
 					</td>
 				</tr>
 				
@@ -675,6 +697,15 @@
 					</td>
 					<td>	
 						<input id="format_type" name="format_type" class="easyui-textbox" required="true"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td >
+						<label><?php echo _('版式類型(英文)') ?>:</label>
+					</td>
+					<td>	
+						<input id="format_type_en" name="format_type_en" class="easyui-textbox" required="true" validtype="english"/>
 					</td>
 				</tr>
 
@@ -794,6 +825,19 @@
 					</td>
 					<td colSpan=3 >
 						<input id="description" name="description" class="easyui-textbox"  multiline="true"  style='width:300px;height:300px' />
+						<!-- <textarea cols="50" rows="5" id="description" name="description" class="easyui-textbox">
+						</textarea> -->
+
+					</td>
+					
+				</tr>
+
+				<tr>
+					<td >
+						<label><?php echo _('備註(英文)') ?>:</label>
+					</td>
+					<td colSpan=3 >
+						<input id="description_en" name="description_en" class="easyui-textbox"  multiline="true"  style='width:300px;height:300px' />
 						<!-- <textarea cols="50" rows="5" id="description" name="description" class="easyui-textbox">
 						</textarea> -->
 

@@ -66,6 +66,7 @@
 
 		        },
 		        {field:'type_name',title:'<?php echo _('類別名稱') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'type_name_en',title:'<?php echo _('英文名稱') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 
 		        {field:'description',title:'<?php echo _('備註') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'create_name',title:'<?php echo _('建立者') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
@@ -276,7 +277,7 @@
 				url: '<?php echo EasyUI_DATA_PATH ?>',
 				queryParams:params,
 				onSubmit: function(){
-					return $(this).form('validate');
+					// return $(this).form('validate');
 				},
 				success: function(result){
 					// console.log(result);return;	
@@ -507,6 +508,23 @@
 		})
 	}
 
+	function check_en(obj){
+		console.log(obj);
+
+		// console.log(obj.textbox('getValue'));
+		// obj.textbox('setValue', $(this).val("123"));
+
+		var regExp = /^[\a-zA-Z]+$/;
+	    if (regExp.test(obj)){
+	    	console.log("true");
+	        return true;
+	    }else{
+	    	console.log("false");
+	        return false;
+	    }    
+	}
+
+
 
 </script>
 
@@ -582,6 +600,15 @@
 					</td>
 					<td>
 						<input id="type_name" name="type_name" class="easyui-textbox" required="true"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td >
+						<label><?php echo _('類別英文') ?>:</label>
+					</td>
+					<td>
+						<input id="type_name_en" name="type_name_en" class="easyui-textbox" required="true" validtype="english" />
 					</td>
 				</tr>
 

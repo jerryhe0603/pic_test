@@ -96,16 +96,39 @@ if($type=='select'){
 
 	extract($params);
 
+	if($type_name){
+		$check_name = getColumnValue($table_name,'type_name','type_name='.SQLStr($type_name));
+		if($check_name!=''){
 
-	
+			$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
 
-	$check_name = getColumnValue($table_name,'type_name','type_name='.SQLStr($type_name));
-	if($check_name!=''){
-
-		$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
-
+		}
+	}else{
+		$errMsg = _('名稱').' '._('不可為空,不允許儲存').'!';
 	}
 	
+	/*
+	if($type_name_en){
+
+		if(preg_match("/^[\x7f-\xff]+$/",$type_name_en)){
+	     $errMsg = '請輸入英文';
+	}
+
+	}else{
+		$errMsg = _('英文名稱').' '._('不可為空,不允許儲存').'!';
+	}*/
+
+	/*
+	if($type_name_en){
+
+		if(!preg_match('/^[a-zA-Z]+$/',$type_name_en)){
+		    $errMsg = '只能輸入英文';
+		}
+
+	}else{
+		$errMsg = _('英文名稱').' '._('不可為空,不允許儲存').'!';
+	}*/
+
 	// if($print_sql)sql_log($file_name,"cp");
 
 
@@ -221,6 +244,17 @@ if($type=='select'){
 
 		}
 	// }
+	
+	/*
+	if($type_name_en){
+
+		if(!preg_match('/^[a-zA-Z]+$/',$type_name_en)){
+		    $errMsg = '只能輸入英文';
+		}
+
+	}else{
+		$errMsg = _('英文名稱').' '._('不可為空,不允許儲存').'!';
+	}*/
 
 
 	if($errMsg==''){

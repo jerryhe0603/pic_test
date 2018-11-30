@@ -406,8 +406,13 @@ if($type=='select'){
 	// }
 	// 
 
+	//確認圖片
+	$img_1 = isset($params['img_file_path1'])?$params['img_file_path1']:"";
+	$img_2 = isset($params['img_file_path2'])?$params['img_file_path2']:"";
+	$img_3 = isset($params['img_file_path3'])?$params['img_file_path3']:"";
+
 	//判斷多張圖片
-	if($img_1['name']!=""){
+	if($img_1!="" &&$img_1['name']!=""){
 		$tmp_img_name = $img_1['name'];
 		$check_img_sql = " SELECT * FROM pic WHERE (org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name') AND id <> ".SQLStr($id);
 		$rs = query($check_img_sql);
@@ -417,7 +422,7 @@ if($type=='select'){
 		}
 	}
 
-	if($img_2['name']!=""){
+	if($img_2 !="" && $img_2['name']!=""){
 		$tmp_img_name = $img_2['name'];
 		$check_img_sql = " SELECT * FROM pic WHERE (org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name') AND id <> ".SQLStr($id);
 		$rs = query($check_img_sql);
@@ -427,7 +432,7 @@ if($type=='select'){
 		}
 	}
 
-	if($img_3['name']!=""){
+	if($img_3 !="" && $img_3['name']!=""){
 		$tmp_img_name = $img_3['name'];
 		$check_img_sql = " SELECT * FROM pic WHERE (org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name') AND id <> ".SQLStr($id);
 		$rs = query($check_img_sql);

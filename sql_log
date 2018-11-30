@@ -195,3 +195,17 @@ INSERT select_item VALUES
 
 ALTER TABLE `pic`
 	ADD COLUMN `make_age` VARCHAR(56) DEFAULT NULL COMMENT '製圖年代' AFTER `is_album`;
+
+
+
+11/29
+ALTER TABLE `pic_type`
+	ADD COLUMN `type_name_en` VARCHAR(256) NULL DEFAULT '' COMMENT '英文名稱' AFTER `type_name`;
+
+ALTER TABLE `pic`
+	ADD COLUMN `pic_name_en` VARCHAR(256) NOT NULL DEFAULT '' AFTER `pic_name`,
+	ADD COLUMN `format_type_en` VARCHAR(256) NULL DEFAULT NULL AFTER `format_type`,
+	ADD COLUMN `make_age_en` VARCHAR(256) NULL DEFAULT NULL AFTER `make_age`,
+	ADD COLUMN `description_en` LONGTEXT NULL AFTER `description`;
+
+

@@ -10,5 +10,12 @@ $.extend($.fn.validatebox.defaults.rules, {
         },
         // message: 'Please enter at least {0} characters.'
         message: '請輸入10位數字,包含開頭2碼英文字母, 例:AB12345678'
+    },
+    
+    english: {// 驗證英語
+        validator: function (value) {
+            return /^[A-Za-z]+$/i.test(value);
+        },
+        message: '請輸入英文'
     }
 });
