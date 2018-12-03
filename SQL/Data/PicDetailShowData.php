@@ -19,32 +19,22 @@ if (!function_exists('sql_log')) {
 // $_FILES["file"]["tmp_name"]
 
 //上傳檔案的路徑
-$dir_prefix='../../upload/';
-$url = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/upload';
-$url_log = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/thumb';
-$dir_prefix_log = '../../thumb/';;
+$dir_prefix='../../upload/detail/';
+$url = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/upload/detail';
+$url_log = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/thumb/detail';
+$dir_prefix_log = '../../thumb/detail/';
 
 
 if($type=='select'){
 	
-	//圖片類型
-	$sql_pic_type = " SELECT * FROM pic_type WHERE (1=1) ";
-	$rs_pic_type = query($sql_pic_type);
-	$pic_type = fetch_array($rs_pic_type);
-	$aPicTypeArr = array();
+	//圖片主檔
+	$sql_pic = " SELECT * FROM pic WHERE (1=1) ";
+	$rs_pic = query($sql_pic);
+	$pic = fetch_array($rs_pic);
+	$aPicArr = array();
 	
-	foreach ($pic_type as $key => $value) {
-		$aPicTypeArr[$pic_type[$key]['id']] = $pic_type[$key]['type_name'];
-	}
-
-	//選項名稱
-	$sql_select_item = " SELECT * FROM select_item WHERE (1=1) ";
-	$rs_select_item = query($sql_select_item);
-	$select_item = fetch_array($rs_select_item);
-	$aSelectItemArr = array();
-	
-	foreach ($select_item as $key => $value) {
-		$aSelectItemArr[$select_item[$key]['id']] = $select_item[$key]['name'];
+	foreach ($pic as $key => $value) {
+		$aPicArr[$pic[$key]['id']] = $pic[$key]['pic_name'];
 	}
 
 
@@ -71,7 +61,7 @@ if($type=='select'){
 	$sql .= $cond;
 
 	if(!$is_order){
-		$sql .= ' ORDER BY '.$table_name.'.id';
+		$sql .= ' ORDER BY '.$table_name.'.detail_id';
 	}
 
 	$sql .= $limit;
@@ -85,19 +75,14 @@ if($type=='select'){
 
 	//圖片類型
 	foreach ($arr as $key => $value) {
-		$arr[$key]['pic_type_name']  = $aPicTypeArr[$value['pic_type_id']];
-	}
-
-	//選項名稱
-	foreach ($arr as $key => $value) {
-		$arr[$key]['is_album_name']  = $aSelectItemArr[$value['is_album']];
+		$arr[$key]['pic_main_name']  = $aPicArr[$value['pic_main_id']];
 	}
 
 	// sql_log($file_name,'end:'.date('Y-m-d H:i:s')."\r\n");
 }else if($type=='select_count'){
 
 
-	$sql = 'SELECT count('.$table_name.'.id) AS count '
+	$sql = 'SELECT count('.$table_name.'.detail_id) AS count '
 		.' FROM '.$table_name
 		.' WHERE (1=1) ';
 
@@ -131,7 +116,7 @@ if($type=='select'){
     
 
 	// sql_log($file_name,serialize($params));
-	$check_name = getColumnValue($table_name,'pic_name','pic_name='.SQLStr($pic_name));
+	$check_name = getColumnValue($table_name,'pic_detail_name','pic_detail_name='.SQLStr($pic_detail_name));
 	if($check_name!=''){
 
 		$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
@@ -139,70 +124,27 @@ if($type=='select'){
 
 	//確認圖片
 	$img_1 = $params['img_file_path1'];
+	
+	
 	$x = (!empty($img_1['tmp_name']))?1:0;
+	
+	
 	$check_pic = $x;
 	if($check_pic==0){
 		$errMsg = _('圖片上傳有缺').' '._('不允許儲存').'!';
 	}
-	
-	/*
-	$img_1 = $params['img_file_path1'];
-	$img_2 = $params['img_file_path2'];
-	$img_3 = $params['img_file_path3'];
-	
-	$x = (!empty($img_1['tmp_name']))?4:0;
-	$y = (!empty($img_2['tmp_name']))?2:0;
-	$z = (!empty($img_3['tmp_name']))?1:0;
-	
-	$check_pic = $x+$y+$z;
-	if($check_pic==0 || $check_pic==1 || $check_pic==2 || $check_pic==3 || $check_pic==5){
-		$errMsg = _('圖片上傳有缺').' '._('不允許儲存').'!';
-	}*/
 	// if($print_sql)sql_log($file_name,"cp");
 
-	if($img_1['name']!=""){
-		$tmp_img_name = $img_1['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name' ";
-		$rs = query($check_img_sql);
-		$arr = fetch_array($rs);
-		if(count($arr)>0){
-			$errMsg = '與'.$arr[0]['pic_name']._('圖片檔名重複').' '._('不允許儲存').'!';
-		}
-	}
-	/*
 	//判斷多張圖片
 	if($img_1['name']!=""){
 		$tmp_img_name = $img_1['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name' ";
+		$check_img_sql = " SELECT * FROM pic_detail WHERE org_img1='$tmp_img_name' ";
 		$rs = query($check_img_sql);
 		$arr = fetch_array($rs);
 		if(count($arr)>0){
-			$errMsg = '與'.$arr[0]['pic_name']._('圖片檔名重複').' '._('不允許儲存').'!';
+			$errMsg = '與'.$arr[0]['pic_detail_name']._('圖片檔名重複').' '._('不允許儲存').'!';
 		}
 	}
-
-	if($img_2['name']!=""){
-		$tmp_img_name = $img_2['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name' ";
-		$rs = query($check_img_sql);
-		$arr = fetch_array($rs);
-		if(count($arr)>0){
-			$errMsg = '與'.$arr[0]['pic_name']._('圖片檔名重複').' '._('不允許儲存').'!';
-		}
-	}
-
-	if($img_3['name']!=""){
-		$tmp_img_name = $img_3['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name' ";
-		$rs = query($check_img_sql);
-		$arr = fetch_array($rs);
-		if(count($arr)>0){
-			$errMsg = '與'.$arr[0]['pic_name']._('圖片檔名重複').' '._('不允許儲存').'!';
-		}
-	}*/
-
-
-
 
 	$api_arr = array();
 	// $errMsg =123;
@@ -221,12 +163,16 @@ if($type=='select'){
 			mkdir($dir_path,0777,true);
 		}
 
+		if(!is_dir($dir_prefix_log)){
+			mkdir($dir_prefix_log,0777,true);
+		}
+
 
 		$sql_insert = ' INSERT '.$table_name.' (';
 
 		$sql_value = '(';
 
-		$sql = "SELECT * from ".$table_name." ORDER BY id LIMIT 1 ";
+		$sql = "SELECT * from ".$table_name." ORDER BY detail_id LIMIT 1 ";
 		$rs = query($sql);
 		$field_count = $rs->field_count;
 
@@ -243,7 +189,7 @@ if($type=='select'){
 			}
 
 			//指定某些欄位的值
-			if($field_name=='id'){
+			if($field_name=='detail_id'){
 				// $params[$field_name]=$id;
 
 			}else if(like($field_name,'create_')){
@@ -382,7 +328,7 @@ if($type=='select'){
 // echo $sql_insert;exit;
 		query($sql_insert);
 
-		$return_str = $pic_name;
+		$return_str = $pic_detail_name;
 
 
 		//新增商品------------------------------------------------------------------
@@ -415,7 +361,7 @@ if($type=='select'){
 	// 	$errMsg = _('編號').' '._('重複,不允許儲存').'!';
 	// }else{
 
-		$check_name = getColumnValue($table_name,'pic_name','pic_name='.SQLStr($pic_name).' AND id !='.SQLStr($id));
+		$check_name = getColumnValue($table_name,'pic_detail_name','pic_detail_name='.SQLStr($pic_detail_name).' AND detail_id !='.SQLStr($id));
 		if($check_name!=''){
 
 			$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
@@ -426,51 +372,17 @@ if($type=='select'){
 
 	//確認圖片
 	$img_1 = isset($params['img_file_path1'])?$params['img_file_path1']:"";
-	/*
-	$img_2 = isset($params['img_file_path2'])?$params['img_file_path2']:"";
-	$img_3 = isset($params['img_file_path3'])?$params['img_file_path3']:"";
-	*/
-
+	
 	//判斷多張圖片
 	if($img_1!="" &&$img_1['name']!=""){
 		$tmp_img_name = $img_1['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE (org_img1='$tmp_img_name') AND id <> ".SQLStr($id);
+		$check_img_sql = " SELECT * FROM pic_detail WHERE (org_img1='$tmp_img_name') AND detail_id <> ".SQLStr($id);
 		$rs = query($check_img_sql);
 		$arr = fetch_array($rs);
 		if(count($arr)>0){
-			$errMsg = '與'.$arr[0]['pic_name']._('圖片檔名重複').' '._('不允許儲存').'!';
+			$errMsg = '與'.$arr[0]['pic_detail_name']._('圖片檔名重複').' '._('不允許儲存').'!';
 		}
 	}
-	/*
-	if($img_1!="" &&$img_1['name']!=""){
-		$tmp_img_name = $img_1['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE (org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name') AND id <> ".SQLStr($id);
-		$rs = query($check_img_sql);
-		$arr = fetch_array($rs);
-		if(count($arr)>0){
-			$errMsg = '與'.$arr[0]['pic_name']._('圖片檔名重複').' '._('不允許儲存').'!';
-		}
-	}
-		if($img_2 !="" && $img_2['name']!=""){
-		$tmp_img_name = $img_2['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE (org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name') AND id <> ".SQLStr($id);
-		$rs = query($check_img_sql);
-		$arr = fetch_array($rs);
-		if(count($arr)>0){
-			$errMsg = '與'.$arr[0]['pic_name']._('圖片檔名重複').' '._('不允許儲存').'!';
-		}
-	}
-
-	if($img_3 !="" && $img_3['name']!=""){
-		$tmp_img_name = $img_3['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE (org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name') AND id <> ".SQLStr($id);
-		$rs = query($check_img_sql);
-		$arr = fetch_array($rs);
-		if(count($arr)>0){
-			$errMsg = '與'.$arr[0]['pic_name']._('圖片檔名重複').' '._('不允許儲存').'!';
-		}
-	}*/
-
 
 	if($errMsg==''){
 		query('BEGIN');
@@ -499,7 +411,7 @@ if($type=='select'){
 		$update_sql = ' UPDATE '.$table_name.' SET ';
 
 
-		$sql = "SELECT * from ".$table_name." ORDER BY id LIMIT 1 ";
+		$sql = "SELECT * from ".$table_name." ORDER BY detail_id LIMIT 1 ";
 		$rs = query($sql);
 		$field_count = $rs->field_count;
 
@@ -509,7 +421,7 @@ if($type=='select'){
 			$field_name = $field->name;
 
 			
-			if($field_name!='id' && !like($field_name,'create_') && !like($field_name,'file_path') && !like($field_name,'org_img') && !like($field_name,'width')&& !like($field_name,'height')  ){
+			if($field_name!='detail_id' && !like($field_name,'create_') && !like($field_name,'file_path') && !like($field_name,'org_img') && !like($field_name,'width')&& !like($field_name,'height')  ){
 				$update_sql .= $field_name;
 			
 				if(!isset($params[$field_name])){
@@ -674,7 +586,7 @@ if($type=='select'){
 
 		$update_sql = substr($update_sql,0, -1);
 
-		$update_sql .= ' WHERE id = '.SQLStr($id);
+		$update_sql .= ' WHERE detail_id = '.SQLStr($id);
 
 			if($print_sql)sql_log($file_name,'params:'.serialize($params));
 			if($print_sql)sql_log($file_name,$update_sql);
@@ -704,9 +616,9 @@ if($type=='select'){
 
 	//刪除商品-----------------------------------------------------------------------
 
-	$img_file_path1 = getColumnValue($table_name,'img_file_path1','id='.SQLStr($id));
+	$img_file_path1 = getColumnValue($table_name,'img_file_path1','detail_id='.SQLStr($id));
 
-	$sql = 'DELETE FROM '.$table_name.' WHERE id='.SQLStr($id);
+	$sql = 'DELETE FROM '.$table_name.' WHERE detail_id='.SQLStr($id);
 		if($print_sql)sql_log($file_name,$sql);
 	query($sql);
 
@@ -714,7 +626,7 @@ if($type=='select'){
 
 	//刪除圖片實體路徑
 	// unlink('../../upload/e5f54a4715dd0411286952ccc5ae4487');
-	unlink('../../upload/'.$img_file_path1);
+	unlink('../../upload/detail/'.$img_file_path1);
 	// rmdir_recursive('../../upload/'.$img_file_path1);
 
 	

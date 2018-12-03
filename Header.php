@@ -62,14 +62,12 @@
 </head>
 <body>
 
-<table border="0">
+<table border="0" width="100%">
 <tr>
 	
-	<td align="right" valign="center">
-		<span style='font-size:18px;font-weight:bold;'><BR><?php echo $_SESSION['user_name'] ?> </span>
-	</td>
+	
 	<td valign="center" class=navigation>
-		<ul class=navigation >
+		<ul class=navigation style="text-align: left">
 			<?php if ($_SESSION['user_id'] =="admin"){ ?>
 				<li>
 					<a href='./User.php'>使用者管理</a>
@@ -86,7 +84,18 @@
 			<li>
 				<a href='./PicShow.php'>圖片管理</a>
 			</li>
+			<li>
+				<a href='./PicDetailShow.php'>冊頁圖檔管理</a>
+			</li>
 
+			
+		</ul>
+	</td>
+	<td align="right" valign="center">
+		<span style='font-size:18px;font-weight:bold;'><BR><?php echo $_SESSION['user_name'] ?> </span>
+	</td>
+	<td valign="center" width="10%">
+		<ul class=navigation>
 			<li>
 				<a href='javascript:logout();'><?php echo _('登出') ?></a>
 				<!-- <a href='javascript:logout();' style='font-size:18px;font-weight:bold;'><?php echo _('登出') ?></a> -->

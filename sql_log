@@ -209,3 +209,30 @@ ALTER TABLE `pic`
 	ADD COLUMN `description_en` LONGTEXT NULL AFTER `description`;
 
 
+12/3
+
+CREATE TABLE `pic_detail` (
+	`detail_id` INT(10) NOT NULL AUTO_INCREMENT COMMENT '流水號',
+	`pic_main_id` INT(10) NULL DEFAULT NULL COMMENT '主檔編號',
+	`pic_detail_name` VARCHAR(256) NOT NULL DEFAULT '' COMMENT '圖片名稱',
+	`pic_detail_name_en` VARCHAR(256) NOT NULL DEFAULT '' COMMENT '英文名稱',
+	`pic_size` VARCHAR(56) NULL DEFAULT NULL COMMENT '尺寸',
+	`pic_no` VARCHAR(256) NULL DEFAULT NULL COMMENT '圖像編號',
+	`img_file_path1` VARCHAR(2048) NULL DEFAULT NULL COMMENT '圖片編碼',
+	`org_img1` TEXT NULL COMMENT '原始圖檔名',
+	`width_1` VARCHAR(10) NULL DEFAULT NULL COMMENT '原始檔寬',
+	`height_1` VARCHAR(10) NULL DEFAULT NULL COMMENT '原始檔高',
+	`description` LONGTEXT NULL DEFAULT NULL,
+	`create_id` VARCHAR(36) NULL DEFAULT NULL COMMENT '建立者ID',
+	`create_name` VARCHAR(256) NULL DEFAULT NULL,
+	`create_time` DATETIME NOT NULL,
+	`modify_id` VARCHAR(36) NULL DEFAULT NULL,
+	`modify_name` VARCHAR(256) NULL DEFAULT NULL,
+	`modify_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`detail_id`)
+)
+COMMENT='圖檔冊頁的其他照片'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;

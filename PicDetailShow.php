@@ -6,10 +6,10 @@
 
 	extract($_REQUEST);
 
-	$title = "圖片管理";
+	$title = "冊頁圖檔管理";
 
 	
-	$SQL_data = new SQLData('PicShowData','pic');
+	$SQL_data = new SQLData('PicDetailShowData','pic_detail');
 	$SQL_dataType = $SQL_data->getDataType();
 	$SQL_tableName = $SQL_data->getTableName();
 
@@ -20,25 +20,15 @@
 
 	// 建立下拉選單
 	$select_arr = array(
-		'pic_type' => array(
-			'obj_id'=>'pic_type_id',
+		'pic' => array(
+			'obj_id'=>'pic_main_id,search_main_id',
 			'value_col'=>'id',
-			'text_col'=>'type_name',
-			'where_cond'=>'(1=1) ORDER BY item_index',
-			// 'empty_value' => '----------'
-			'empty_value'=> ''
-		),
-		'select_item' => array(
-			'obj_id'=>'is_album',
-			'value_col'=>'id',
-			'text_col'=>'name',
-			'where_cond'=>'(1=1) ORDER BY id',
+			'text_col'=>'pic_name',
+			'where_cond'=>'(1=1) AND is_album=1 ORDER BY id',
 			// 'empty_value' => '----------'
 			'empty_value'=> ''
 		),
 
-
-		
 
 	);
 
@@ -75,7 +65,7 @@
 		 	url:'<?php echo EasyUI_DATA_PATH ?>',
 		 	nowrap: false,
 		 	columns:[[
-		        {field:'id',title:'<?php echo _('編號') ?>',width:'',align:'left',sortable:true,
+		        {field:'detail_id',title:'<?php echo _('編號') ?>',width:'',align:'left',sortable:true,
 		        	sorter:function(a,b){
 		        		if (parseFloat(a))a = parseFloat(a);
 						if (parseFloat(b))b = parseFloat(b);
@@ -84,19 +74,14 @@
 		        	} 
 
 		    	},
-		        {field:'pic_name',title:'<?php echo _('圖名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'pic_name_en',title:'<?php echo _('圖名(英文)') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'make_age',title:'<?php echo _('製圖時代') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'make_age_en',title:'<?php echo _('製圖時代(英文)') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'uniform_number',title:'<?php echo _('統一編號') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'format_type',title:'<?php echo _('版式類型') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'format_type_en',title:'<?php echo _('版式類型(英文)') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'pic_detail_name',title:'<?php echo _('圖名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'pic_detail_name_en',title:'<?php echo _('圖名(英文)') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'pic_main_id',title:'<?php echo _('主檔ID') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'pic_main_name',title:'<?php echo _('主檔檔名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'pic_size',title:'<?php echo _('尺寸') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'pic_type_name',title:'<?php echo _('類別') ?>',width:'5%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'description',title:'<?php echo _('描述') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'description_en',title:'<?php echo _('描述(英文)') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
+		        /*{field:'description_en',title:'<?php echo _('描述(英文)') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },*/
 		        {field:'pic_no',title:'<?php echo _('圖片編號') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
-		        {field:'is_album_name',title:'<?php echo _('冊頁') ?>',width:'',align:'center',sortable:true,sortOrder:'asc' },
 		        {field:'width_1',title:'<?php echo _('原始檔寬') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
 		        {field:'height_1',title:'<?php echo _('原始檔高') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
 		        {field:'img_file_path1',title:'<?php echo _('圖片') ?>',width:'',align:'center',halign:'center',sortable:true,sortOrder:'asc',
@@ -121,7 +106,7 @@
 	    					}	
 	    				}
 	    				var img_url= row['img_file_path1'];
-	    				return (has_pic)?'<img height="100px" width="100px" src="./upload/'+img_url+' " />':'';
+	    				return (has_pic)?'<img height="100px" width="100px" src="./upload/detail/'+img_url+' " />':'';
 					}
 		    	},
 
@@ -230,7 +215,7 @@
 			$('#'+form_obj.form_id).form('load',row);
 
 			$('#'+form_obj.type_id).val('update');
-			$('#'+form_obj.master_id).val(row.id);
+			$('#'+form_obj.master_id).val(row.detail_id);
 
 			$('#warehouse_id').combobox({'disabled':true});
 
@@ -256,7 +241,7 @@
 
 		if (row){
 			$('#'+form_obj.type_id).val('delete');
-			$('#'+form_obj.master_id).val(row.id);
+			$('#'+form_obj.master_id).val(row.detail_id);
 			
 			checkForm(form_obj);
 		}else{
@@ -336,7 +321,7 @@
 		
 					// uploadFile();
 					<?php if($_SESSION['user_id']=='admin'){ ?> 
-						console.log(result);
+						// console.log(result);
 					<?php } ?> 
 					
 					var result = eval('('+result+')');
@@ -443,13 +428,23 @@
 
 					var combo_id = combo_id_arr[c];
 					var combo_obj = $('#'+combo_id);
-					
-					combo_obj.combobox({
-			    		data:eval('('+dataObj.val()+')'),
-			    		valueField:'<?php echo $value_col ?>',
-			    		textField:'<?php echo $text_col ?>',
-			    		width:'100%'
-		    		});
+						
+					if(combo_id=="search_main_id"){
+						combo_obj.combobox({
+				    		data:eval('('+dataObj.val()+')'),
+				    		valueField:'<?php echo $value_col ?>',
+				    		textField:'<?php echo $text_col ?>',
+				    		width:'150px',
+				    		
+			    		});
+					}else{
+						combo_obj.combobox({
+				    		data:eval('('+dataObj.val()+')'),
+				    		valueField:'<?php echo $value_col ?>',
+				    		textField:'<?php echo $text_col ?>',
+				    		width:'100%'
+			    		});
+					}
 					
 			    	// combo_obj.combobox('reload');					
 			    	var option_obj = combo_obj.combobox('options');	
@@ -543,7 +538,7 @@
 			var img_id = '#img'+i;
 			
 			if(row['img_file_path'+i]!=undefined){
-				var src = 'upload/'+row['img_file_path'+i];	
+				var src = 'upload/detail/'+row['img_file_path'+i];	
 				// var src = 'upload/'+row.id+'/'+row['img_file_path'+i];
 				
 			}else{
@@ -567,14 +562,14 @@
 		})
 	}
 
-
+	/*
 	function displayUpload(value){
-		// if(value==1){
-		// 	$('.pic_tr').show();
-		// }else{
-		// 	$('.pic_tr').hide();
-		// }
-	}
+		if(value==1){
+			$('.pic_tr').show();
+		}else{
+			$('.pic_tr').hide();
+		}
+	}*/
 
 
 </script>
@@ -606,9 +601,12 @@
 	    <input class="easyui-searchbox"  data-options="prompt:'查詢名稱',searcher:doSearch" style="">
  -->
  		<span><?php echo _('編號') ?>:</span>
-     	<input id="search_code" class="easyui-textbox"  search_type='like' search_column='<?php echo $SQL_tableName ?>.id' >
+     	<input id="search_code" class="easyui-textbox"  search_type='like' search_column='<?php echo $SQL_tableName ?>.detail_id' >
 	    <span><?php echo _('名稱') ?>:</span>
-	    <input id="search_name" class="easyui-textbox"  search_type='like' search_column='<?php echo $SQL_tableName ?>.pic_name' >
+	    <input id="search_name" class="easyui-textbox"  search_type='like' search_column='<?php echo $SQL_tableName ?>.pic_detail_name' >
+		
+		<span><?php echo _('主檔名稱') ?>:</span>
+	    <input id="search_main_id" class="easyui-combobox input_type"  search_type='=' search_column='<?php echo $SQL_tableName ?>.pic_main_id' >
 
 	    &nbsp;
 	    <a href="javascript:doSearch('<?php echo $SQL_dataType ?>','<?php echo $SQL_tableName ?>');" id='search_btn' class="easyui-linkbutton" iconCls='icon-search' plain="true" style='<?php echo form_search_btn ?>;' ><?php echo _('搜尋') ?></a>
@@ -637,10 +635,21 @@
 				</tr> -->
 				<tr>
 					<td >
+						<label><?php echo _('圖檔主檔') ?>:</label>
+					</td>
+					<td>
+						<input id='pic_main_id' name="pic_main_id" class="easyui-combobox input_type" />
+						<span id='pic_main_name_disp' name='pic_main_name_disp' class='disp_type' ></span>
+					</td>
+
+				</tr>
+
+				<tr>
+					<td >
 						<label><?php echo _('圖名') ?>:</label>
 					</td>
 					<td>	
-						<input id="pic_name" name="pic_name" class="easyui-textbox" required="true"/>
+						<input id="pic_detail_name" name="pic_detail_name" class="easyui-textbox" required="true"/>
 					</td>
 				</tr>
 
@@ -649,55 +658,10 @@
 						<label><?php echo _('圖名(英文)') ?>:</label>
 					</td>
 					<td>	
-						<input id="pic_name_en" name="pic_name_en" class="easyui-textbox" required="true" validtype="english"/>
-					</td>
-				</tr>
-
-				<tr>
-					<td >
-						<label><?php echo _('製圖時代') ?>:</label>
-					</td>
-					<td>	
-						<input id="make_age" name="make_age" class="easyui-textbox" required="true"/>
-					</td>
-				</tr>
-
-				<tr>
-					<td >
-						<label><?php echo _('製圖時代(英文)') ?>:</label>
-					</td>
-					<td>	
-						<input id="make_age_en" name="make_age_en" class="easyui-textbox" required="true" validtype="english"/>
+						<input id="pic_detail_name_en" name="pic_detail_name_en" class="easyui-textbox" required="true" validtype="english"/>
 					</td>
 				</tr>
 				
-				<tr>
-					<td >
-						<label><?php echo _('統一編號') ?>:</label>
-					</td>
-					<td>	
-						<input id="uniform_number" name="uniform_number" class="easyui-textbox" required="true"/>
-					</td>
-				</tr>
-
-				<tr>
-					<td >
-						<label><?php echo _('版式類型') ?>:</label>
-					</td>
-					<td>	
-						<input id="format_type" name="format_type" class="easyui-textbox" required="true"/>
-					</td>
-				</tr>
-
-				<tr>
-					<td >
-						<label><?php echo _('版式類型(英文)') ?>:</label>
-					</td>
-					<td>	
-						<input id="format_type_en" name="format_type_en" class="easyui-textbox" required="true" validtype="english"/>
-					</td>
-				</tr>
-
 				<tr>
 					<td >
 						<label><?php echo _('尺寸') ?>:</label>
@@ -718,31 +682,6 @@
 
 				<tr>
 					<td >
-						<label><?php echo _('類別') ?>:</label>
-					</td>
-					<td>
-						<input id='pic_type_id' name="pic_type_id" class="easyui-combobox input_type" />
-						<span id='pic_type_name_disp' name='pic_type_name_disp' class='disp_type' ></span>
-					</td>
-
-				</tr>
-				
-				<tr>
-					<td >
-						<label><?php echo _('是否為冊頁') ?>:</label>
-					</td>
-					<td>	
-						<input id='is_album' name="is_album" class="easyui-combobox input_type" data-options="panelHeight:'auto',"  />
-						<span id='is_album_disp' name='is_album_disp' class='disp_type' ></span>
-						<!-- <select id="is_album" name="is_album" class="easyui-combobox" data-options="panelHeight:'auto'" style="width:200px;">
-						 	<option value="0" selected>否</option>
-						    <option value="1">是</option>
-						</select> -->
-					</td>
-				</tr>
-
-				<tr>
-					<td >
 						<label><?php echo _('地圖圖片') ?>1:</label>
 					</td>
 					<td colSpan=3>
@@ -750,25 +689,6 @@
 						<!-- <a href="javascript:clearFilePath('img_file_path1');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
 					</td>
 				</tr>
-				<?php /*
-				<tr class="pic_tr">
-					<td >
-						<label><?php echo _('地圖圖片') ?>2:</label>
-					</td>
-					<td colSpan=3>
-						<input id=img_file_path2 name="img_file_path2" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />
-						<!-- <a href="javascript:clearFilePath('img_file_path2');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
-					</td>
-				</tr>
-				<tr class="pic_tr">
-					<td >
-						<label><?php echo _('地圖圖片') ?>3:</label>
-					</td>
-					<td colSpan=3>
-						<input id="img_file_path3" name="img_file_path3" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />
-						<!-- <a href="javascript:clearFilePath('img_file_path3');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
-					</td>
-				</tr> */ ?>
 
 				<?php /*
 				<tr>
@@ -822,19 +742,6 @@
 				</tr>
 
 				<tr>
-					<td >
-						<label><?php echo _('備註(英文)') ?>:</label>
-					</td>
-					<td colSpan=3 >
-						<input id="description_en" name="description_en" class="easyui-textbox"  multiline="true"  style='width:300px;height:300px' />
-						<!-- <textarea cols="50" rows="5" id="description" name="description" class="easyui-textbox">
-						</textarea> -->
-
-					</td>
-					
-				</tr>
-
-				<tr>
 					<td colSpan=4 style='text-align: center;'>
 						<a href="javascript:void(0)" class="easyui-linkbutton" onclick="checkForm(stock_form_obj);" ><?php echo _('儲存') ?></a>
 						<!-- &nbsp;&nbsp;
@@ -860,16 +767,12 @@
 		<table>
 			<tr>
 				<td width=20% align=center >圖片1</td>
-				<!-- <td width=20% align=center>圖片2</td>
-				<td width=20% align=center>圖片3</td> -->
 				<!-- 
 				<td width=20% align=center >圖片4</td>
 				<td width=20% align=center >圖片5</td> -->
 			</tr>
 			<tr>
 				<td><img src='' width='100%'  id='img1' /></td>
-				<!-- <td><img src='' width='100%'  id='img2' /></td>
-				<td><img src='' width='100%'  id='img3' /></td> -->
 				<!-- 
 				<td><img src='' width='100%'  id='img4' /></td>
 				<td><img src='' width='100%'  id='img5' /></td> -->
