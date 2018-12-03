@@ -162,7 +162,7 @@ if($type=='select'){
 
 	if($img_1['name']!=""){
 		$tmp_img_name = $img_1['name'];
-		$check_img_sql = " SELECT * FROM pic WHERE org_img1='$tmp_img_name' OR org_img2='$tmp_img_name' OR org_img3='$tmp_img_name' ";
+		$check_img_sql = " SELECT * FROM pic WHERE org_img1='$tmp_img_name' ";
 		$rs = query($check_img_sql);
 		$arr = fetch_array($rs);
 		if(count($arr)>0){

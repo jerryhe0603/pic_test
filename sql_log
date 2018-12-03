@@ -236,3 +236,13 @@ COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=1
 ;
+
+ALTER TABLE `pic`
+	DROP COLUMN `img_file_path2`,
+	DROP COLUMN `org_img2`,
+	DROP COLUMN `width_2`,
+	DROP COLUMN `height_2`,
+	DROP COLUMN `img_file_path3`,
+	DROP COLUMN `org_img3`,
+	DROP COLUMN `width_3`,
+	DROP COLUMN `height_3`;
