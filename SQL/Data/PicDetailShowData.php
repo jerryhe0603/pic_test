@@ -19,10 +19,10 @@ if (!function_exists('sql_log')) {
 // $_FILES["file"]["tmp_name"]
 
 //上傳檔案的路徑
-$dir_prefix='../../upload/detail/';
-$url = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/upload/detail';
-$url_log = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/thumb/detail';
-$dir_prefix_log = '../../thumb/detail/';
+$dir_prefix='../../upload/';
+$url = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/upload';
+$url_log = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/thumb';
+$dir_prefix_log = '../../thumb/';
 
 
 if($type=='select'){
@@ -243,8 +243,11 @@ if($type=='select'){
 			            break;
 			        }
 
-			        $newwidth = "1280";
-			        $newheight = "720";
+			        $newwidth = "640";
+			        $newheight = "360";
+
+			        // $newwidth = "1280";
+			        // $newheight = "720";
 			        // Load
 					$thumb = imagecreatetruecolor($newwidth, $newheight);
 
@@ -289,7 +292,24 @@ if($type=='select'){
 				}
 				
 
+			}else if($field_name=='uniform_number'){
+				$uniform_number = getColumnValue("pic",'uniform_number','id='.SQLStr($pic_main_id));
+				$params[$field_name] = $uniform_number;
+
+			}else if($field_name=='pic_no'){
+				$sql = 'SELECT count('.$table_name.'.detail_id) AS count '
+						.' FROM '.$table_name
+						.' WHERE pic_main_id='.$pic_main_id;
+
+				// $sql = " SELECT count(detail_id) AS count FROM pic_detail WHERE pic_main_id=".SQLStr($pic_main_id);
+				$count_rs = query($sql);
+				$arr_count = fetch_array($count_rs);
+
+				$count_str = $arr_count[0]['count'];
+				$params[$field_name] = $count_str;
 			}
+
+
 			/*
 			else if(like($field_name,'width')){
 				// $files = $params['img_file_path1'];
@@ -325,7 +345,7 @@ if($type=='select'){
 
 			// if($print_sql)sql_log($file_name,'params:'.serialize($params));
 			if($print_sql)sql_log($file_name,$sql_insert);
-// echo $sql_insert;exit;
+
 		query($sql_insert);
 
 		$return_str = $pic_detail_name;
@@ -421,7 +441,7 @@ if($type=='select'){
 			$field_name = $field->name;
 
 			
-			if($field_name!='detail_id' && !like($field_name,'create_') && !like($field_name,'file_path') && !like($field_name,'org_img') && !like($field_name,'width')&& !like($field_name,'height')  ){
+			if($field_name!='detail_id' && !like($field_name,'create_') && !like($field_name,'file_path') && !like($field_name,'org_img') && !like($field_name,'width')&& !like($field_name,'height')&& !like($field_name,'uniform_number')&& !like($field_name,'pic_no')  ){
 				$update_sql .= $field_name;
 			
 				if(!isset($params[$field_name])){
@@ -502,8 +522,11 @@ if($type=='select'){
 			            break;
 			        }
 
-				        $newwidth = "1280";
-				        $newheight = "720";
+				        $newwidth = "640";
+				        $newheight = "360";
+
+				        // $newwidth = "1280";
+				        // $newheight = "720";
 				        // Load
 						$thumb = imagecreatetruecolor($newwidth, $newheight);
 
@@ -550,6 +573,17 @@ if($type=='select'){
 
 
 				}//end if isset
+
+			}else if($field_name=='uniform_number'){
+				$uniform_number = getColumnValue("pic",'uniform_number','id='.SQLStr($pic_main_id));
+				$params[$field_name] = $uniform_number;
+
+				$update_sql .= $field_name;
+				$update_sql .= ' = ';
+				
+				$update_sql .= SQLStr($params[$field_name]);	
+				
+				$update_sql .= ',';
 
 			}
 			/*
@@ -626,7 +660,7 @@ if($type=='select'){
 
 	//刪除圖片實體路徑
 	// unlink('../../upload/e5f54a4715dd0411286952ccc5ae4487');
-	unlink('../../upload/detail/'.$img_file_path1);
+	unlink('../../upload/'.$img_file_path1);
 	// rmdir_recursive('../../upload/'.$img_file_path1);
 
 	

@@ -137,6 +137,13 @@ if($type=='select'){
 		$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
 	}
 
+	
+	$check_uniform_number = getColumnValue($table_name,'uniform_number','uniform_number='.SQLStr($uniform_number));
+	if($check_uniform_number!=''){
+
+		$errMsg = _('統一編號').' '._('重複,不允許儲存').'!';
+	}
+
 	//確認圖片
 	$img_1 = $params['img_file_path1'];
 	$x = (!empty($img_1['tmp_name']))?1:0;
@@ -297,8 +304,11 @@ if($type=='select'){
 			            break;
 			        }
 
-			        $newwidth = "1280";
-			        $newheight = "720";
+			        $newwidth = "640";
+			        $newheight = "360";
+				        
+			        // $newwidth = "1280";
+			        // $newheight = "720";
 			        // Load
 					$thumb = imagecreatetruecolor($newwidth, $newheight);
 
@@ -382,6 +392,25 @@ if($type=='select'){
 // echo $sql_insert;exit;
 		query($sql_insert);
 
+		query('COMMIT');
+		//新增一份到detail
+		// $pic_main_id = getColumnValue($table_name,'id','uniform_number='.SQLStr($uniform_number).' LIMIT 1');
+
+		query('BEGIN');
+
+		$sql = 'SELECT *'
+		.' FROM '.$table_name
+		.' WHERE (1=1) AND uniform_number='.SQLStr($uniform_number).' LIMIT 1';
+
+		$rs = query($sql);
+		$rs_pic = fetch_array($rs);
+		$arr_pic = $rs_pic[0];
+
+		$sql_inset_detail = " INSERT pic_detail (pic_main_id,uniform_number,pic_detail_name,pic_no,img_file_path1,org_img1,width_1,height_1,create_id,create_name,create_time) VALUE (";
+		$sql_inset_detail .="'".$arr_pic['id']."','".$uniform_number."','".$pic_name."' ,'1' ,'".$params['img_file_path1']."' ,'".$params['org_img1']."' ,'".$arr_pic['width_1']."','".$arr_pic['height_1']."','".$params['create_id']."','".$params['create_name']."' ,'".$params['create_time']."') ";
+		query($sql_inset_detail);
+
+
 		$return_str = $pic_name;
 
 
@@ -423,6 +452,13 @@ if($type=='select'){
 		}
 	// }
 	// 
+
+	$check_uniform_number = getColumnValue($table_name,'uniform_number','uniform_number='.SQLStr($uniform_number).' AND id !='.SQLStr($id));
+	if($check_uniform_number!=''){
+
+		$errMsg = _('統一編號').' '._('重複,不允許儲存').'!';
+
+	}
 
 	//確認圖片
 	$img_1 = isset($params['img_file_path1'])?$params['img_file_path1']:"";
@@ -590,8 +626,10 @@ if($type=='select'){
 			            break;
 			        }
 
-				        $newwidth = "1280";
-				        $newheight = "720";
+				        $newwidth = "640";
+				        $newheight = "360";
+				        // $newwidth = "1280";
+				        // $newheight = "720";
 				        // Load
 						$thumb = imagecreatetruecolor($newwidth, $newheight);
 
@@ -680,8 +718,28 @@ if($type=='select'){
 			if($print_sql)sql_log($file_name,$update_sql);
 
 		query($update_sql);
+		query('COMMIT');
 
+		query('BEGIN');
+		//更新到detail
+		$sql = 'SELECT *'
+		.' FROM pic'
+		.' WHERE (1=1) AND id='.SQLStr($id);
+		$rs = query($sql);
+		$arr_pic = fetch_array($rs);
 
+		$Update_detail = " UPDATE  pic_detail SET uniform_number=".SQLStr($arr_pic[0]['uniform_number']).","
+												." pic_detail_name=".SQLStr($arr_pic[0]['pic_name']).","
+												." img_file_path1=".SQLStr($arr_pic[0]['img_file_path1']).","
+												." org_img1=".SQLStr($arr_pic[0]['org_img1']).","
+												." width_1=".SQLStr($arr_pic[0]['width_1']).","
+												." height_1=".SQLStr($arr_pic[0]['height_1']).","
+												." modify_id=".SQLStr($arr_pic[0]['modify_id']).","
+												." modify_name=".SQLStr($arr_pic[0]['modify_name']).","
+												." modify_time=".SQLStr($arr_pic[0]['modify_time'])
+							." WHERE pic_main_id=".SQLStr($id)." AND pic_no=1 ";
+
+		query($Update_detail);
 
 		//修改商品------------------------------------------------------------------
 
@@ -702,19 +760,23 @@ if($type=='select'){
 
 	query('BEGIN');
 
-	//刪除商品-----------------------------------------------------------------------
+	//刪除檔案-----------------------------------------------------------------------
 
 	$img_file_path1 = getColumnValue($table_name,'img_file_path1','id='.SQLStr($id));
 
 	$sql = 'DELETE FROM '.$table_name.' WHERE id='.SQLStr($id);
 		if($print_sql)sql_log($file_name,$sql);
 	query($sql);
+	unlink('../../upload/'.$img_file_path1);
+
+	//刪除相關冊頁
+	$sql = 'DELETE FROM pic_detail WHERE pic_main_id='.SQLStr($id);
+	query($sql);
 
 	query('COMMIT');
 
 	//刪除圖片實體路徑
 	// unlink('../../upload/e5f54a4715dd0411286952ccc5ae4487');
-	unlink('../../upload/'.$img_file_path1);
 	// rmdir_recursive('../../upload/'.$img_file_path1);
 
 	

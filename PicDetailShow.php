@@ -74,16 +74,14 @@
 		        	} 
 
 		    	},
-		        {field:'pic_detail_name',title:'<?php echo _('圖名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'pic_detail_name_en',title:'<?php echo _('圖名(英文)') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'pic_main_id',title:'<?php echo _('主檔ID') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'pic_main_name',title:'<?php echo _('主檔檔名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'pic_size',title:'<?php echo _('尺寸') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'description',title:'<?php echo _('描述') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
-		        /*{field:'description_en',title:'<?php echo _('描述(英文)') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },*/
+		        {field:'uniform_number',title:'<?php echo _('統一編號') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'pic_no',title:'<?php echo _('圖片編號') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
+		        {field:'pic_detail_name',title:'<?php echo _('圖名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        // {field:'description',title:'<?php echo _('描述') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
+		        /*{field:'description_en',title:'<?php echo _('描述(英文)') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },*/
 		        {field:'width_1',title:'<?php echo _('原始檔寬') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
 		        {field:'height_1',title:'<?php echo _('原始檔高') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
+		        /*
 		        {field:'img_file_path1',title:'<?php echo _('圖片') ?>',width:'',align:'center',halign:'center',sortable:true,sortOrder:'asc',
 	    			formatter:function(value,row){
 	    				var has_pic = false;
@@ -95,8 +93,8 @@
 
 	    				return (has_pic)?'<a href="javascript:doShowPic(stock_form_obj);">'+search_img+'</a>':'';
 					}
-		    	},
-
+		    	},*/
+		    	/*
 		    	{field:'img_file_path',title:'<?php echo _('縮圖') ?>',width:'10%',align:'center',halign:'center',sortable:true,sortOrder:'asc',
 	    			formatter:function(value,row){
 	    				var has_pic = false;
@@ -108,7 +106,7 @@
 	    				var img_url= row['img_file_path1'];
 	    				return (has_pic)?'<img height="100px" width="100px" src="./upload/detail/'+img_url+' " />':'';
 					}
-		    	},
+		    	},*/
 
 		        {field:'create_name',title:'<?php echo _('建立者') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'create_time',title:'<?php echo _('建立時間') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
@@ -321,7 +319,7 @@
 		
 					// uploadFile();
 					<?php if($_SESSION['user_id']=='admin'){ ?> 
-						// console.log(result);
+						console.log(result);
 					<?php } ?> 
 					
 					var result = eval('('+result+')');
@@ -655,34 +653,7 @@
 
 				<tr>
 					<td >
-						<label><?php echo _('圖名(英文)') ?>:</label>
-					</td>
-					<td>	
-						<input id="pic_detail_name_en" name="pic_detail_name_en" class="easyui-textbox" required="true" validtype="english"/>
-					</td>
-				</tr>
-				
-				<tr>
-					<td >
-						<label><?php echo _('尺寸') ?>:</label>
-					</td>
-					<td>	
-						<input id="pic_size" name="pic_size" class="easyui-textbox" required="true"/>
-					</td>
-				</tr>
-
-				<tr>
-					<td >
-						<label><?php echo _('圖像編號') ?>:</label>
-					</td>
-					<td>	
-						<input id="pic_no" name="pic_no" class="easyui-textbox" required="true"/>
-					</td>
-				</tr>
-
-				<tr>
-					<td >
-						<label><?php echo _('地圖圖片') ?>1:</label>
+						<label><?php echo _('地圖圖片') ?>:</label>
 					</td>
 					<td colSpan=3>
 						<input id=img_file_path1 name="img_file_path1" class="easyui-filebox"  data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%">
@@ -728,6 +699,7 @@
 					</td>
 				</tr>
 				*/?>
+				<?php /*
 				<tr>
 					<td >
 						<label><?php echo _('備註') ?>:</label>
@@ -739,7 +711,7 @@
 
 					</td>
 					
-				</tr>
+				</tr> */ ?>
 
 				<tr>
 					<td colSpan=4 style='text-align: center;'>
@@ -766,7 +738,7 @@
 	<div id='img_dlg' class='easyui-dialog' style="<?php echo long_pic_dialog ?>" closed="true" buttons="#dlg-buttons" resizable=true  modal=true shadow=false  >
 		<table>
 			<tr>
-				<td width=20% align=center >圖片1</td>
+				<td width=20% align=center >圖片</td>
 				<!-- 
 				<td width=20% align=center >圖片4</td>
 				<td width=20% align=center >圖片5</td> -->

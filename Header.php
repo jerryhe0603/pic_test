@@ -49,6 +49,9 @@
 		});
 	</script> -->
 	
+	<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+	<script src="js/dropzone.js"></script>
+	
 	<script type='text/javascript'>
 		
 		function logout(){
