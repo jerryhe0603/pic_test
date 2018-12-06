@@ -19,10 +19,15 @@ if (!function_exists('sql_log')) {
 // $_FILES["file"]["tmp_name"]
 
 //上傳檔案的路徑
-$dir_prefix='../../upload/';
+$dir_prefix='../../detail/';
+$url = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/detail';
+$url_log = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/thumb';
+$dir_prefix_log = '../../thumb/';
+
+/*$dir_prefix='../../upload/';
 $url = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/upload';
 $url_log = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/thumb';
-$dir_prefix_log = '../../thumb/';;
+$dir_prefix_log = '../../thumb/';*/
 
 
 if($type=='select'){
@@ -741,6 +746,12 @@ if($type=='select'){
 
 		query($Update_detail);
 
+		$Update_detail = " UPDATE  pic_detail SET uniform_number=".SQLStr($arr_pic[0]['uniform_number']).","
+												." modify_time=".SQLStr($arr_pic[0]['modify_time'])
+							." WHERE pic_main_id=".SQLStr($id);
+
+		query($Update_detail);
+
 		//修改商品------------------------------------------------------------------
 
 
@@ -767,7 +778,8 @@ if($type=='select'){
 	$sql = 'DELETE FROM '.$table_name.' WHERE id='.SQLStr($id);
 		if($print_sql)sql_log($file_name,$sql);
 	query($sql);
-	unlink('../../upload/'.$img_file_path1);
+	// unlink('../../detail/'.$img_file_path1);
+	// unlink('../../thumb/'.$img_file_path1);
 
 	//刪除相關冊頁
 	$sql = 'DELETE FROM pic_detail WHERE pic_main_id='.SQLStr($id);

@@ -19,11 +19,15 @@ if (!function_exists('sql_log')) {
 // $_FILES["file"]["tmp_name"]
 
 //上傳檔案的路徑
-$dir_prefix='../../upload/';
-$url = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/upload';
+$dir_prefix='../../detail/';
+$url = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/detail';
 $url_log = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/thumb';
 $dir_prefix_log = '../../thumb/';
 
+/*$dir_prefix='../../upload/';
+$url = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/upload';
+$url_log = 'http://'.$_SERVER['HTTP_HOST'].'/pic_test/thumb';
+$dir_prefix_log = '../../thumb/';*/
 
 if($type=='select'){
 	
@@ -297,15 +301,23 @@ if($type=='select'){
 				$params[$field_name] = $uniform_number;
 
 			}else if($field_name=='pic_no'){
-				$sql = 'SELECT count('.$table_name.'.detail_id) AS count '
+				$count_str = $params[$field_name];
+				if($params[$field_name]==''){
+					$sql = 'SELECT MAX('.$table_name.'.pic_no) AS count '
 						.' FROM '.$table_name
 						.' WHERE pic_main_id='.$pic_main_id;
+					$count_rs = query($sql);
+					$arr_count = fetch_array($count_rs);
+
+					$count_str = $arr_count[0]['count'];
+				}
+
+				// $sql = 'SELECT count('.$table_name.'.detail_id) AS count '
+				// 		.' FROM '.$table_name
+				// 		.' WHERE pic_main_id='.$pic_main_id;
 
 				// $sql = " SELECT count(detail_id) AS count FROM pic_detail WHERE pic_main_id=".SQLStr($pic_main_id);
-				$count_rs = query($sql);
-				$arr_count = fetch_array($count_rs);
-
-				$count_str = $arr_count[0]['count'];
+				
 				$params[$field_name] = $count_str;
 			}
 
@@ -441,7 +453,7 @@ if($type=='select'){
 			$field_name = $field->name;
 
 			
-			if($field_name!='detail_id' && !like($field_name,'create_') && !like($field_name,'file_path') && !like($field_name,'org_img') && !like($field_name,'width')&& !like($field_name,'height')&& !like($field_name,'uniform_number')&& !like($field_name,'pic_no')  ){
+			if($field_name!='detail_id' && !like($field_name,'create_') && !like($field_name,'file_path') && !like($field_name,'org_img') && !like($field_name,'width')&& !like($field_name,'height')&& !like($field_name,'uniform_number')  ){
 				$update_sql .= $field_name;
 			
 				if(!isset($params[$field_name])){
@@ -660,7 +672,8 @@ if($type=='select'){
 
 	//刪除圖片實體路徑
 	// unlink('../../upload/e5f54a4715dd0411286952ccc5ae4487');
-	unlink('../../upload/'.$img_file_path1);
+	unlink('../../detail/'.$img_file_path1);
+	unlink('../../thumb/'.$img_file_path1);
 	// rmdir_recursive('../../upload/'.$img_file_path1);
 
 	

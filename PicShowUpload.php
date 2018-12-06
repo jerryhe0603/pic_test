@@ -43,6 +43,7 @@
 	);
 
 ?>
+<link rel="stylesheet" href="./css/colorbox.css">
 <script type='text/javascript'>
 
 	stock_form_obj = {
@@ -64,6 +65,8 @@
 	Dropzone.autoDiscover = false;
 
    $(document).ready(function () {
+		$(".iframe").colorbox({iframe:true,width:"90%", height:"90%"});
+
         $("#fm").dropzone({
             maxFiles: 2000,
             url: "ajax/JAGetFileData.php/",
@@ -80,6 +83,7 @@
 		var ok_img = '<img src="js/easyui/themes/icons/ok.png"/>';
 		var no_img = '<img src="js/easyui/themes/icons/no.png"/>';
 		var search_img = '<img src="js/easyui/themes/icons/search.png"/>';
+		var edit_add_img = '<img src="js/easyui/themes/icons/edit_add.png"/>';
 		var pencil_img = '<img src="js/easyui/themes/icons/pencil.png"/>';
 
   		var dg = $('#dg').datagrid({
@@ -132,7 +136,7 @@
 	    					}	
 	    				}
 	    				var img_url= row['img_file_path1'];
-	    				return (has_pic)?'<img height="100px" width="100px" src="./upload/'+img_url+' " />':'';
+	    				return (has_pic)?'<img height="100px" width="100px" src="./thumb/'+img_url+' " />':'';
 					}
 		    	},
 
@@ -144,9 +148,10 @@
 		        {field:'is_album',title:'<?php echo _('上傳其他圖片') ?>',width:'',align:'center',halign:'center',sortable:true,sortOrder:'asc',
 	    			formatter:function(value,row){
 	    				var has_pic = false;
-	    				
+	    				var row_id = row['id'];
 
-	    				return '<a href="javascript:doShowUploadPic(stock_form_obj);">'+search_img+'</a>';
+	    				// return '<a class="iframe" href="./PicUpload.php">'+search_img+'</a>';
+	    				return '<a href="javascript:doShowUploadPic(stock_form_obj,'+row_id+');">'+edit_add_img+'</a>';
 					}
 		    	},
 		        // {field:'name',title:'Name',width:100},
@@ -570,7 +575,7 @@
 			var img_id = '#img'+i;
 			
 			if(row['img_file_path'+i]!=undefined){
-				var src = 'upload/'+row['img_file_path'+i];	
+				var src = 'detail/'+row['img_file_path'+i];	
 				// var src = 'upload/'+row.id+'/'+row['img_file_path'+i];
 				
 			}else{
@@ -603,12 +608,14 @@
 		// }
 	}
 
-	function doShowUploadPic(form_obj){
+	function doShowUploadPic(form_obj,row_id){
 		var row = $('#'+form_obj.dg_id).datagrid('getSelected');
 		// console.log(pic);
 		$('#img_upload_dlg').dialog('open').dialog('setTitle','<?php echo _('圖片上傳') ?>');
 
-		$("div#myid").dropzone({ url: "ajax/JAGetFileData.php" });
+		$('iframe[name=select_frame]').contents().find('#select_id').val(row_id);
+
+		// $("div#img_upload_dlg").dropzone({ url: "ajax/JAGetFileData.php" });
 		// Dropzone.autoDiscover = false;
 		// $("#fm").dropzone({
   //           maxFiles: 2000,
@@ -871,24 +878,27 @@
 
 	<?php //上傳圖片用 ?>
 	<div id='img_upload_dlg' class='easyui-dialog' style="<?php echo long_pic_dialog ?>" closed="true" buttons="#dlg-buttons" resizable=true  modal=true shadow=false  >
-		<form id="fm" name='fm' method="post" class="dropzone" enctype="multipart/form-data" >
+		<center>
+		<table width="80%">
+			<tr>
+				<td>
+					<iframe id="select_frame" name="select_frame" width="100%" height="300" src="./PicUpload.php"></iframe>
+					<input id="is_valid" name="is_valid" type='hidden' class='' value='1'  default_value='1' />
+				</td>
+			</tr>
+		</table>
+		<?php /*
+		<form id="fm_pic" name='fm_pic' method="post" class="dropzone" enctype="multipart/form-data" >
 			<!-- <div class="fitem"> -->
 			<!-- <div id=myid class="fallback">
 			    <input id="file" name="file" type="file"  />
 		  	</div> -->
 
-		  	<table>
-			<tr>
-				<td width=20% align=center ><input id="file" name="file" type="file"  /></td>
-				<!-- <td width=20% align=center>圖片2</td>
-				<td width=20% align=center>圖片3</td> -->
-				<!-- 
-				<td width=20% align=center >圖片4</td>
-				<td width=20% align=center >圖片5</td> -->
-			</tr>
+			<input id="file" name="file" type="file"  />
+
 		</table>
 
-		</form>
+		</form>*/ ?>
 		
 		<center>
 			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#img_upload_dlg').dialog('close');" style=""><?php echo _('關閉') ?></a>
@@ -898,5 +908,6 @@
 
 
 </center>
+
 
 

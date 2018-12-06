@@ -43,7 +43,6 @@
 	);
 
 ?>
-<link rel="stylesheet" href="./css/colorbox.css">
 <script type='text/javascript'>
 
 	stock_form_obj = {
@@ -62,19 +61,6 @@
 	// });
 
 	maskLoading(document.body);
-	Dropzone.autoDiscover = false;
-
-   $(document).ready(function () {
-		$(".iframe").colorbox({iframe:true,width:"90%", height:"90%"});
-
-        $("#fm").dropzone({
-            maxFiles: 2000,
-            url: "ajax/JAGetFileData.php/",
-            success: function (file, response) {
-                console.log(response);
-            }
-        });
-   })
 
 	$(function(){
 		
@@ -83,7 +69,6 @@
 		var ok_img = '<img src="js/easyui/themes/icons/ok.png"/>';
 		var no_img = '<img src="js/easyui/themes/icons/no.png"/>';
 		var search_img = '<img src="js/easyui/themes/icons/search.png"/>';
-		var edit_add_img = '<img src="js/easyui/themes/icons/edit_add.png"/>';
 		var pencil_img = '<img src="js/easyui/themes/icons/pencil.png"/>';
 
   		var dg = $('#dg').datagrid({
@@ -137,6 +122,7 @@
 	    				}
 	    				var img_url= row['img_file_path1'];
 	    				return (has_pic)?'<img height="100px" width="100px" src="./thumb/'+img_url+' " />':'';
+	    				// return (has_pic)?'<img height="100px" width="100px" src="./upload/'+img_url+' " />':'';
 					}
 		    	},
 
@@ -145,15 +131,6 @@
 		        {field:'modify_name',title:'<?php echo _('修改者') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'modify_time',title:'<?php echo _('修改時間') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 
-		        {field:'is_album',title:'<?php echo _('上傳其他圖片') ?>',width:'',align:'center',halign:'center',sortable:true,sortOrder:'asc',
-	    			formatter:function(value,row){
-	    				var has_pic = false;
-	    				var row_id = row['id'];
-
-	    				// return '<a class="iframe" href="./PicUpload.php">'+search_img+'</a>';
-	    				return '<a href="javascript:doShowUploadPic(stock_form_obj,'+row_id+');">'+edit_add_img+'</a>';
-					}
-		    	},
 		        // {field:'name',title:'Name',width:100},
 		        // {field:'price',title:'Price',width:100,align:'right'}
 		    ]],
@@ -608,23 +585,6 @@
 		// }
 	}
 
-	function doShowUploadPic(form_obj,row_id){
-		var row = $('#'+form_obj.dg_id).datagrid('getSelected');
-		// console.log(pic);
-		$('#img_upload_dlg').dialog('open').dialog('setTitle','<?php echo _('圖片上傳') ?>');
-
-		$('iframe[name=select_frame]').contents().find('#select_id').val(row_id);
-
-		// $("div#img_upload_dlg").dropzone({ url: "ajax/JAGetFileData.php" });
-		// Dropzone.autoDiscover = false;
-		// $("#fm").dropzone({
-  //           maxFiles: 2000,
-  //           url: "ajax/JAGetFileData.php",
-  //           success: function (file, response) {
-  //               console.log(response);
-  //           }
-  //       });
-	}
 
 </script>
 
@@ -799,9 +759,64 @@
 						<!-- <a href="javascript:clearFilePath('img_file_path1');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
 					</td>
 				</tr>
-				
+				<?php /*
+				<tr class="pic_tr">
+					<td >
+						<label><?php echo _('地圖圖片') ?>2:</label>
+					</td>
+					<td colSpan=3>
+						<input id=img_file_path2 name="img_file_path2" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />
+						<!-- <a href="javascript:clearFilePath('img_file_path2');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
+					</td>
+				</tr>
+				<tr class="pic_tr">
+					<td >
+						<label><?php echo _('地圖圖片') ?>3:</label>
+					</td>
+					<td colSpan=3>
+						<input id="img_file_path3" name="img_file_path3" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />
+						<!-- <a href="javascript:clearFilePath('img_file_path3');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
+					</td>
+				</tr> */ ?>
 
-				
+				<?php /*
+				<tr>
+					<td >
+						<label><?php echo _('商品圖片') ?>2:</label>
+					</td>
+					<td colSpan=3>
+						<input id=img_file_path2 name="img_file_path2" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />
+						<!-- <a href="javascript:clearFilePath('img_file_path2');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
+					</td>
+				</tr>
+				<tr>
+					<td >
+						<label><?php echo _('商品圖片') ?>3:</label>
+					</td>
+					<td colSpan=3>
+						<input id="img_file_path3" name="img_file_path3" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />
+						<!-- <a href="javascript:clearFilePath('img_file_path3');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
+					</td>
+				</tr>
+				<tr>
+					<td >
+						<label><?php echo _('商品圖片') ?>4:</label>
+					</td>
+					<td colSpan=3>
+						<input id="img_file_path4" name="img_file_path4" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />
+						<!-- <a href="javascript:clearFilePath('img_file_path4');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
+					</td>
+				</tr>
+				<tr>
+					<td >
+						<label><?php echo _('商品圖片') ?>5:</label>
+					</td>
+					<td colSpan=3>
+						<input id="img_file_path5" name="img_file_path5" class="easyui-filebox" data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%" />
+						<!-- <a href="javascript:clearFilePath('img_file_path5');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
+					</td>
+				</tr>
+				*/?>
 				<tr>
 					<td >
 						<label><?php echo _('備註') ?>:</label>
@@ -876,38 +891,7 @@
 	</div>
 
 
-	<?php //上傳圖片用 ?>
-	<div id='img_upload_dlg' class='easyui-dialog' style="<?php echo long_pic_dialog ?>" closed="true" buttons="#dlg-buttons" resizable=true  modal=true shadow=false  >
-		<center>
-		<table width="80%">
-			<tr>
-				<td>
-					<iframe id="select_frame" name="select_frame" width="100%" height="300" src="./PicUpload.php"></iframe>
-					<input id="is_valid" name="is_valid" type='hidden' class='' value='1'  default_value='1' />
-				</td>
-			</tr>
-		</table>
-		<?php /*
-		<form id="fm_pic" name='fm_pic' method="post" class="dropzone" enctype="multipart/form-data" >
-			<!-- <div class="fitem"> -->
-			<!-- <div id=myid class="fallback">
-			    <input id="file" name="file" type="file"  />
-		  	</div> -->
-
-			<input id="file" name="file" type="file"  />
-
-		</table>
-
-		</form>*/ ?>
-		
-		<center>
-			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#img_upload_dlg').dialog('close');" style=""><?php echo _('關閉') ?></a>
-		</center>
-	</div>
-
-
 
 </center>
-
 
 

@@ -24,7 +24,8 @@
 			'obj_id'=>'pic_main_id,search_main_id',
 			'value_col'=>'id',
 			'text_col'=>'pic_name',
-			'where_cond'=>'(1=1) AND is_album=1 ORDER BY id',
+			'where_cond'=>'(1=1) ORDER BY id',
+			// 'where_cond'=>'(1=1) AND is_album=1 ORDER BY id',
 			// 'empty_value' => '----------'
 			'empty_value'=> ''
 		),
@@ -648,6 +649,15 @@
 					</td>
 					<td>	
 						<input id="pic_detail_name" name="pic_detail_name" class="easyui-textbox" required="true"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td >
+						<label><?php echo _('圖像編號') ?>:</label>
+					</td>
+					<td>	
+						<input id="pic_no" name="pic_no" class="easyui-textbox" required="true"/>
 					</td>
 				</tr>
 

@@ -51,6 +51,7 @@
 	
 	<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 	<script src="js/dropzone.js"></script>
+	<script src="./js/jquery.colorbox-min.js"></script>
 	
 	<script type='text/javascript'>
 		
