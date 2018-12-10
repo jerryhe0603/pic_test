@@ -2,6 +2,7 @@
 $print_sql=0;
 $errMsg = '';
 $file_name = '../../log/'.basename(__FILE__).date('YmdHis').'.txt';
+ini_set("memory_limit","4096M");
 
 if (!function_exists('sql_log')) {
 	function sql_log($file_name,$sql){
@@ -727,30 +728,55 @@ if($type=='select'){
 
 		query('BEGIN');
 		//更新到detail
-		$sql = 'SELECT *'
-		.' FROM pic'
-		.' WHERE (1=1) AND id='.SQLStr($id);
-		$rs = query($sql);
-		$arr_pic = fetch_array($rs);
+		$check_main = getColumnValue("pic_detail",'detail_id',' pic_no=1 AND uniform_number='.SQLStr($uniform_number).' LIMIT 1');
 
-		$Update_detail = " UPDATE  pic_detail SET uniform_number=".SQLStr($arr_pic[0]['uniform_number']).","
-												." pic_detail_name=".SQLStr($arr_pic[0]['pic_name']).","
-												." img_file_path1=".SQLStr($arr_pic[0]['img_file_path1']).","
-												." org_img1=".SQLStr($arr_pic[0]['org_img1']).","
-												." width_1=".SQLStr($arr_pic[0]['width_1']).","
-												." height_1=".SQLStr($arr_pic[0]['height_1']).","
-												." modify_id=".SQLStr($arr_pic[0]['modify_id']).","
-												." modify_name=".SQLStr($arr_pic[0]['modify_name']).","
-												." modify_time=".SQLStr($arr_pic[0]['modify_time'])
-							." WHERE pic_main_id=".SQLStr($id)." AND pic_no=1 ";
+		if(!$check_main){
+			
+			//新增一份到detail
+			// $pic_main_id = getColumnValue($table_name,'id','uniform_number='.SQLStr($uniform_number).' LIMIT 1');
 
-		query($Update_detail);
 
-		$Update_detail = " UPDATE  pic_detail SET uniform_number=".SQLStr($arr_pic[0]['uniform_number']).","
+			$sql = 'SELECT *'
+			.' FROM '.$table_name
+			.' WHERE (1=1)  AND uniform_number='.SQLStr($uniform_number).' LIMIT 1';
+
+			$rs = query($sql);
+			$rs_pic = fetch_array($rs);
+			$arr_pic = $rs_pic[0];
+
+			$sql_inset_detail = " INSERT pic_detail (pic_main_id,uniform_number,pic_detail_name,pic_no,img_file_path1,org_img1,width_1,height_1,create_id,create_name,create_time) VALUE (";
+			$sql_inset_detail .="'".$arr_pic['id']."','".$uniform_number."','".$pic_name."' ,'1' ,'".$arr_pic['img_file_path1']."' ,'".$arr_pic['org_img1']."' ,'".$arr_pic['width_1']."','".$arr_pic['height_1']."','".$arr_pic['create_id']."','".$arr_pic['create_name']."' ,'".$arr_pic['create_time']."') ";
+			query($sql_inset_detail);
+			
+			
+		}else{
+			$sql = 'SELECT *'
+			.' FROM pic'
+			.' WHERE (1=1) AND id='.SQLStr($id);
+			$rs = query($sql);
+			$arr_pic = fetch_array($rs);
+
+			$Update_detail = " UPDATE  pic_detail SET uniform_number=".SQLStr($arr_pic[0]['uniform_number']).","
+													." pic_detail_name=".SQLStr($arr_pic[0]['pic_name']).","
+													." img_file_path1=".SQLStr($arr_pic[0]['img_file_path1']).","
+													." org_img1=".SQLStr($arr_pic[0]['org_img1']).","
+													." width_1=".SQLStr($arr_pic[0]['width_1']).","
+													." height_1=".SQLStr($arr_pic[0]['height_1']).","
+													." modify_id=".SQLStr($arr_pic[0]['modify_id']).","
+													." modify_name=".SQLStr($arr_pic[0]['modify_name']).","
+													." modify_time=".SQLStr($arr_pic[0]['modify_time'])
+								." WHERE pic_main_id=".SQLStr($id)." AND pic_no=1 ";
+
+			query($Update_detail);
+
+			$Update_detail = " UPDATE  pic_detail SET uniform_number=".SQLStr($arr_pic[0]['uniform_number']).","
 												." modify_time=".SQLStr($arr_pic[0]['modify_time'])
 							." WHERE pic_main_id=".SQLStr($id);
 
-		query($Update_detail);
+			query($Update_detail);
+		}
+
+		
 
 		//修改商品------------------------------------------------------------------
 

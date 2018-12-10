@@ -2,6 +2,7 @@
 $print_sql=0;
 $errMsg = '';
 $file_name = '../../log/'.basename(__FILE__).date('YmdHis').'.txt';
+ini_set("memory_limit","4096M");
 
 if (!function_exists('sql_log')) {
 	function sql_log($file_name,$sql){
@@ -309,7 +310,7 @@ if($type=='select'){
 					$count_rs = query($sql);
 					$arr_count = fetch_array($count_rs);
 
-					$count_str = $arr_count[0]['count'];
+					$count_str = $arr_count[0]['count']+1;
 				}
 
 				// $sql = 'SELECT count('.$table_name.'.detail_id) AS count '
