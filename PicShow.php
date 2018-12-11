@@ -100,17 +100,17 @@
 
 		    	},
 		        {field:'pic_name',title:'<?php echo _('圖名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'pic_name_en',title:'<?php echo _('圖名(英文)') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'make_age',title:'<?php echo _('製圖時代') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'make_age_en',title:'<?php echo _('製圖時代(英文)') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        // {field:'pic_name_en',title:'<?php echo _('圖名(英文)') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        {field:'make_age',title:'<?php echo _('製圖時代') ?>',width:'8%',align:'left',sortable:true,sortOrder:'asc' },
+		        // {field:'make_age_en',title:'<?php echo _('製圖時代(英文)') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'uniform_number',title:'<?php echo _('統一編號') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'format_type',title:'<?php echo _('版式類型') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'format_type_en',title:'<?php echo _('版式類型(英文)') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        // {field:'format_type_en',title:'<?php echo _('版式類型(英文)') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'pic_size',title:'<?php echo _('尺寸') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'pic_type_name',title:'<?php echo _('類別') ?>',width:'5%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'description',title:'<?php echo _('描述') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'description_en',title:'<?php echo _('描述(英文)') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'pic_no',title:'<?php echo _('圖片編號') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
+		        {field:'description',title:'<?php echo _('描述') ?>',width:'15%',align:'left',sortable:true,sortOrder:'asc' },
+		        // {field:'description_en',title:'<?php echo _('描述(英文)') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
+		        // {field:'pic_no',title:'<?php echo _('圖片編號') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
 		        {field:'is_album_name',title:'<?php echo _('冊頁') ?>',width:'',align:'center',sortable:true,sortOrder:'asc' },
 		        {field:'width_1',title:'<?php echo _('原始檔寬') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
 		        {field:'height_1',title:'<?php echo _('原始檔高') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
@@ -611,7 +611,29 @@
 	function doShowUploadPic(form_obj,row_id){
 		var row = $('#'+form_obj.dg_id).datagrid('getSelected');
 		// console.log(pic);
-		$('#img_upload_dlg').dialog('open').dialog('setTitle','<?php echo _('圖片上傳') ?>');
+		 
+		
+		$('#select_frame').attr('src','./PicUpload.php?pic_main_id='+row_id);
+
+
+		$('#img_upload_dlg').dialog({
+										title: "<?php echo _('圖片上傳') ?>",
+										width:'90%',
+										top:'40%',
+										left:'10px',
+										position: 'top'
+
+										 // position: {
+									  //       my: "center center",
+									  //       at: "center center",
+									  //       of: window
+									  //   }
+    
+										});
+
+
+		$('#img_upload_dlg').dialog('open');
+		// $('#img_upload_dlg').dialog('open').dialog('setTitle','<?php echo _('圖片上傳') ?>');
 
 		$('iframe[name=select_frame]').contents().find('#select_id').val(row_id);
 
@@ -882,7 +904,7 @@
 		<table width="80%">
 			<tr>
 				<td>
-					<iframe id="select_frame" name="select_frame" width="100%" height="300" src="./PicUpload.php"></iframe>
+					<iframe id="select_frame" name="select_frame" width="100%" height="600" src=""></iframe>
 					<input id="is_valid" name="is_valid" type='hidden' class='' value='1'  default_value='1' />
 				</td>
 			</tr>
