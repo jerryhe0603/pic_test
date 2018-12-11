@@ -145,13 +145,15 @@
 		        {field:'modify_name',title:'<?php echo _('修改者') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'modify_time',title:'<?php echo _('修改時間') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 
-		        {field:'is_album',title:'<?php echo _('上傳其他圖片') ?>',width:'',align:'center',halign:'center',sortable:true,sortOrder:'asc',
+		        {field:'is_album',title:'<?php echo _('上傳冊頁圖片') ?>',width:'',align:'center',halign:'center',sortable:true,sortOrder:'asc',
 	    			formatter:function(value,row){
-	    				var has_pic = false;
+	    				var is_album = false;
 	    				var row_id = row['id'];
-
+	    				if(row['is_album']==1){
+	    					is_album=true;
+	    				}	
 	    				// return '<a class="iframe" href="./PicUpload.php">'+search_img+'</a>';
-	    				return '<a href="javascript:doShowUploadPic(stock_form_obj,'+row_id+');">'+edit_add_img+'</a>';
+	    				return (is_album)?'<a href="javascript:doShowUploadPic(stock_form_obj,'+row_id+');">'+edit_add_img+'</a>':'';
 					}
 		    	},
 		        // {field:'name',title:'Name',width:100},
@@ -628,7 +630,7 @@
 									  //       at: "center center",
 									  //       of: window
 									  //   }
-    
+
 										});
 
 

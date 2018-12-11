@@ -76,8 +76,8 @@
 
 		    	},
 		        {field:'uniform_number',title:'<?php echo _('統一編號') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'pic_no',title:'<?php echo _('圖片編號') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
-		        {field:'pic_detail_name',title:'<?php echo _('圖名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
+		        // {field:'pic_no',title:'<?php echo _('圖片編號') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
+		        // {field:'pic_detail_name',title:'<?php echo _('圖名') ?>',width:'10%',align:'left',sortable:true,sortOrder:'asc' },
 		        // {field:'description',title:'<?php echo _('描述') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },
 		        /*{field:'description_en',title:'<?php echo _('描述(英文)') ?>',width:'20%',align:'left',sortable:true,sortOrder:'asc' },*/
 		        {field:'width_1',title:'<?php echo _('原始檔寬') ?>',width:'',align:'right',sortable:true,sortOrder:'asc' },
@@ -111,8 +111,8 @@
 
 		        {field:'create_name',title:'<?php echo _('建立者') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 		        {field:'create_time',title:'<?php echo _('建立時間') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'modify_name',title:'<?php echo _('修改者') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
-		        {field:'modify_time',title:'<?php echo _('修改時間') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        // {field:'modify_name',title:'<?php echo _('修改者') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
+		        // {field:'modify_time',title:'<?php echo _('修改時間') ?>',width:'',align:'left',sortable:true,sortOrder:'asc' },
 
 		        // {field:'name',title:'Name',width:100},
 		        // {field:'price',title:'Price',width:100,align:'right'}
@@ -150,7 +150,7 @@
 		 	},
 
 		 	onDblClickRow:function(index,row){
-        		Edit(stock_form_obj);
+        		// Edit(stock_form_obj);
             }
 
    //  		onLoadSuccess:function(data){ 
@@ -591,9 +591,9 @@
 
 	<!-- 上方 工具列 -->
 	<div id="toolbar">
-	    <a href="javascript:Add(stock_form_obj);" id='add_btn' class="easyui-linkbutton" iconCls="icon-add" plain="true" style='<?php echo form_toolbar_btn ?>;' ><?php echo _('新增') ?></a>
+	    <!-- <a href="javascript:Add(stock_form_obj);" id='add_btn' class="easyui-linkbutton" iconCls="icon-add" plain="true" style='<?php echo form_toolbar_btn ?>;' ><?php echo _('新增') ?></a>
 	    <a href="javascript:Edit(stock_form_obj);" id='edit_btn' class="easyui-linkbutton" iconCls="icon-edit" plain="true" style='<?php echo form_toolbar_btn ?>;' ><?php echo _('修改') ?></a>
-	    <a href="javascript:Delete(stock_form_obj);" id='delete_btn' class="easyui-linkbutton" iconCls="icon-remove" plain="true" style='<?php echo form_toolbar_btn ?>;' ><?php echo _('刪除') ?></a>
+	    <a href="javascript:Delete(stock_form_obj);" id='delete_btn' class="easyui-linkbutton" iconCls="icon-remove" plain="true" style='<?php echo form_toolbar_btn ?>;' ><?php echo _('刪除') ?></a> -->
 
 	    &nbsp;&nbsp;
 	   <!--  <input class="easyui-searchbox"  data-options="prompt:'查詢編號',searcher:doSearch" style="">
