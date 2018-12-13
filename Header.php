@@ -88,9 +88,9 @@
 			<li>
 				<a href='./PicShow.php'>圖片管理</a>
 			</li>
-			<li>
+			<!-- <li>
 				<a href='./PicDetailShow.php'>冊頁圖檔管理</a>
-			</li>
+			</li> -->
 
 			
 		</ul>
