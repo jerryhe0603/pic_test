@@ -46,7 +46,7 @@ foreach ($aFileArr as $files_key => $files_value) {
 	$uniform_number = getColumnValue("pic",'uniform_number',' id ='.SQLStr($pic_main_id));
 	$pic_name = getColumnValue("pic",'pic_name',' id ='.SQLStr($pic_main_id));
 	$pic_no = getColumnValue("pic_detail",' MAX(pic_no) ',' pic_main_id ='.SQLStr($pic_main_id));
-	$pic_no = $pic_no+1;
+	$pic_no = ($pic_no+1);
 
 	// $img_file_path1 = ;
 	// $org_img1 = ;
@@ -137,9 +137,27 @@ foreach ($aFileArr as $files_key => $files_value) {
 	// $params[$h_name] = $oheight;
 	// 圖片寬高end
 	
-	$sql_inset_detail = " INSERT pic_detail (pic_main_id,uniform_number,pic_detail_name,pic_no,img_file_path1,org_img1,width_1,height_1,create_id,create_name,create_time) VALUE (";
-			$sql_inset_detail .="'".$pic_main_id."','".$uniform_number."','".$pic_name."' ,'".$pic_no."' ,'".$img_file_path1."' ,'".$org_img1."' ,'".$width_1."','".$height_1."','".$create_id."','".$create_name."' ,'".$create_time."') ";
-			query($sql_inset_detail);
+
+	//如果圖名存在就覆蓋
+	$check_pic_detail_org_img1 = getColumnValue("pic_detail",'org_img1',' org_img1 ='.SQLStr($org_img1).' AND pic_main_id='.SQLStr($pic_main_id) );
+
+	if($check_pic_detail_org_img1){
+		$Update_detail = " UPDATE  pic_detail SET width_1=".SQLStr($width_1).","
+												." height_1=".SQLStr($height_1).","
+												." modify_id=".SQLStr($create_id).","
+												." modify_name=".SQLStr($create_name).","
+												." modify_time=".SQLStr($create_time)
+							." WHERE pic_main_id=".SQLStr($pic_main_id)." AND org_img1=".SQLStr($org_img1);
+
+		query($Update_detail);
+	}else{
+		$sql_inset_detail = " INSERT pic_detail (pic_main_id,uniform_number,pic_detail_name,pic_no,img_file_path1,org_img1,width_1,height_1,create_id,create_name,create_time) VALUE (";
+		$sql_inset_detail .="'".$pic_main_id."','".$uniform_number."','".$pic_name."' ,'".$pic_no."' ,'".$img_file_path1."' ,'".$org_img1."' ,'".$width_1."','".$height_1."','".$create_id."','".$create_name."' ,'".$create_time."') ";
+		query($sql_inset_detail);
+	}
+	
+
+
 }
 
 

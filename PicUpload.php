@@ -13,7 +13,7 @@ if(!$pic_main_id){
 }
 
 $aPicDetailArr = array();
-$pic_detail_sql = "SELECT * FROM pic_detail WHERE pic_main_id='$pic_main_id' ";
+$pic_detail_sql = "SELECT * FROM pic_detail WHERE pic_main_id='$pic_main_id' AND pic_no<>1 ORDER BY org_img1";
 // echo $pic_detail_sql;
 $rs_detail_sql = query($pic_detail_sql);
 
@@ -36,10 +36,18 @@ foreach ($pic_detail as $key => $value) {
 
     <script type="text/javascript" src="js/jquery-3.2.1.js?<?php echo rand() ?>"></script>
     <!-- <script src="Scripts/jquery-1.11.1.min.js"></script> -->
-    <script src="http://blueimp.github.io/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
+    <!-- <script src="http://blueimp.github.io/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
     <script src="http://blueimp.github.io/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
     <script src="http://blueimp.github.io/jQuery-File-Upload/js/jquery.fileupload.js"></script>
-     
+    <script src="http://blueimp.github.io/jQuery-File-Upload/js/jquery.fileupload-ui.js"></script>
+    <script src="http://blueimp.github.io/jQuery-File-Upload/js/jquery.fileupload-process.js"></script>
+    <script src="http://blueimp.github.io/jQuery-File-Upload/js/jquery.fileupload-image.js"></script>
+      -->
+
+ <script src="js/jquery.ui.widget.js"></script>
+ <script src="js/jquery.iframe-transport.js"></script>
+ <script src="js/jquery.fileupload.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="css/jquery.fileupload.css" rel="stylesheet" />
     <link href="css/jquery.fileupload-ui.css" rel="stylesheet" />
@@ -79,37 +87,120 @@ foreach ($pic_detail as $key => $value) {
              url: 'ajax/JAGetFileData.php', //上傳圖片的API位置
              // url: 'xxx.com/UploadFileAPI', //上傳圖片的API位置
              dataType: 'json',
+             
              add: function (e, data) { //選擇圖片後會跑入這個事件
  // console.log(data);
                  //將圖片讀取出來並且組成Html塞到內容區塊
                  filesList.push(data.files[0]);
                  var reader = new FileReader();
                  reader.onload = function (e) {
-
-                     $('#presentation > .files').append(
-                         $(
+                    var tpl = $(
                          '<tr class="template-upload">' +
                          // '<tr class="template-upload fade in">' +
                              '<td><span class="preview"><img src="' + e.target.result + '" class="previewImg" /></span></td>' +
                              '<td><p class="name">' + data.files[0].name + '</p><strong class="error text-danger"></strong></td>' +
+                             '<td><span class="pro" /></td>' +
                              // '<td><p class="size">' + (data.files[0].size / 1000) + 'k</p></td>' +
                              '<td><button class="btn btn-warning cancel imgCancel"><span>取消</span></button><button class="btn btn-warning deleted imgDeleted" id="'+ data.files[0].name +'" disabled><span>刪除</span></button></td>' +
                              // '<td><button class="btn btn-warning cancel imgCancel"><span>取消</span></button></td>' +
                          '</tr>'
-                         )
-                     );
+                         );
+                     // data.context = $('#presentation > .files').append(tpl);
+                      data.files[0].context = tpl.appendTo($("#presentation"));
                  }
+                 // console.log(data);
+                 // data.context = tpl.appendTo($("#presentation"));
                  reader.readAsDataURL(data.files[0]);
+
+
+                 //執行 data.submit() 開始上傳
+                 /*$("#start").click(function(e) {
+                    e.preventDefault();
+                    if (filesList.length > 0) {
+                        $('#fileupload,.submit').prop('disabled', true);
+                        $('#fileupload,.imgDeleted,.submit').prop('disabled', true);
+                        $('#start').prop('disabled', true);
+
+                        var jqXHR = data.submit();
+                    }
+                 });*/
+
+                // $('#fileupload,.submit').prop('disabled', false);
+                // $('#fileupload,.imgDeleted,.submit').prop('disabled', false);
              },
+
+             //單一檔案進度
+             /*
+             progress: function(e, data){
+                console.log(data);
+                 var progress = parseInt(data.loaded / data.total * 100, 10);
+
+                 // data.context.find('.pro').text(progress+"%　　").change();
+                 // data.context.text(progress + '%');
+                 if(progress == 100){
+                     // data.context.removeClass('working');
+                 }
+             },*/
+
+             //單一檔案進度
+             progress: function(e, data){
+              
+                 var progress = parseInt(data.loaded / data.total * 100, 10);
+                 // data.context.find('.pro').text(progress+"%　　").change();
+                 if(progress == 100){
+                     // data.context.removeClass('working');
+                 }
+
+                 
+             },
+
+             /*progress: function (e, data) {
+                if (e.isDefaultPrevented()) {
+                    return false;
+                }
+                var progress = Math.floor(data.loaded / data.total * 100);
+                
+                console.log("單一進度:");
+                console.log(data);
+                console.log("單一進度:"+progress);
+                if (data.context) {
+                    console.log(data.context);
+
+                    data.context.each(function () {
+                        $(this).find('.progress_1')
+                            .attr('aria-valuenow', progress)
+                            .children().first().css(
+                                'width',
+                                progress + '%'
+                            );
+                    });
+                }
+            },*/
+             
              progressall: function (e, data) {
                  //控制上傳的時候會跑的進度Bar
+                 $('.progress-bar').text('0%');
                  var progress = parseInt(data.loaded / data.total * 100, 10);
                  $('#progress .progress-bar').css(
                      'width',
                      progress + '%'
                  );
-                 $('.progress-bar').val(progress + '%');
+                 $('.progress-bar').text(progress + '%');
+                // console.log("整體進度:");
+                // console.log(data);
+                // console.log("整體進度:"+progress);
              }
+
+             //全部上傳完畢
+            /* stop: function (e) {
+                $('#fileupload,.imgCancel,.submit').prop('disabled', true);
+                $('#fileupload,.submit').prop('disabled', false);
+                $('#fileupload,.imgDeleted,.submit').prop('disabled', false);
+                $('#start').prop('disabled', false);
+                filesList.length = [];
+              alert("上傳完畢");
+             }*/
+
          });
 
         //圖片取消
@@ -134,7 +225,7 @@ foreach ($pic_detail as $key => $value) {
                 type: 'POST',
                 dataType:'json',
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                    
                     var target = $(this).parents('tr.template-upload'); //找出要取消的照片是第幾張
                     filesList.splice(target.index(), 1);  //記得要把filesList中的圖片也移除掉
@@ -145,6 +236,7 @@ foreach ($pic_detail as $key => $value) {
           
         });
         // submit 註冊 click 事件
+        
         $('.submit').on('click', function (e) {
             e.preventDefault();
             //判斷filesList,有選圖片才送
@@ -165,29 +257,21 @@ foreach ($pic_detail as $key => $value) {
                         console.log(jqXHR.responseText);
                     },
                     complete:function (result, textStatus, jqXHR) {
-                        
+                        alert('上傳完成');
                         //傳送完成後,讓Submit按鈕重新開啟
                         $('#fileupload,.submit').prop('disabled', false);
                         $('#fileupload,.imgDeleted,.submit').prop('disabled', false);
                         filesList.length = [];
+                        // location.reload();
                     }
-                    /*,
-                    progressall: function (e, data) {
-                         //控制上傳的時候會跑的進度Bar
-                         var progress = parseInt(data.loaded / data.total * 100, 10);
-                         $('#progress .progress-bar').css(
-                             'width',
-                             progress + '%'
-                         );
-                    }*/
+                   
                 });
                     
             }
         });
+
      });
 
-     
-        
  </script>
 
 <style type="text/css">
@@ -218,12 +302,13 @@ foreach ($pic_detail as $key => $value) {
                     <span class="btn btn-primary submit">
                         <span>開始上傳圖片</span>
                     </span>
+                    <!-- <input class="btn btn-primary submit" id="start" type="button" value="開始上傳"> -->
                      
  
                      
  
                     <div id="progress" class="progress">
-                        <div class="progress-bar progress-bar-success"></div>
+                        <div class="progress-bar progress-bar-success">0%</div>
                     </div>
                     <table role="presentation" class="table table-striped" id="presentation" width="100%" height="90%">
                         <?php 
@@ -233,6 +318,8 @@ foreach ($pic_detail as $key => $value) {
                                 <tr class="template-upload" width="90%">
                                     <td><span class="preview"><img src="detail/<?php echo $org_img ?>" class="previewImg" /></span></td>
                                     <td><p class="name"><?php echo $org_img ?></p><strong class="error text-danger"></strong></td>
+                                    <td>
+                                    </td>
                                     <td>
                                         <button class="btn btn-warning deleted imgDeleted" id="<?php echo $org_img ?>" ><span>刪除</span></button>
                                         <!-- <input id class="btn btn-warning deleted imgDeleted" value="刪除"> -->
