@@ -1553,7 +1553,8 @@ var Dropzone = function (_Emitter) {
       var _this4 = this;
 
       this.clickableElements.forEach(function (element) {
-        return element.classList.remove("dz-clickable");
+        return element.classList.remove("");
+        // return element.classList.remove("dz-clickable");
       });
       this.removeEventListeners();
       this.disabled = true;
@@ -1567,7 +1568,8 @@ var Dropzone = function (_Emitter) {
     value: function enable() {
       delete this.disabled;
       this.clickableElements.forEach(function (element) {
-        return element.classList.add("dz-clickable");
+        return element.classList.add("");
+        // return element.classList.add("dz-clickable");
       });
       return this.setupEventListeners();
     }
