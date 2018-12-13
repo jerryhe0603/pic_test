@@ -339,6 +339,6 @@ foreach ($pic_detail as $key => $value) {
         </div>
     </div>
 
-	<input id="select_id" name="select_id" type='hidden' class='' value='1'  default_value='1' />
+	<!-- <input id="select_id" name="select_id" type='hidden' class='' value='1'  default_value='1' /> -->
 </form>
 

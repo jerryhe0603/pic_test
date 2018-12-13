@@ -637,7 +637,7 @@
 		$('#img_upload_dlg').dialog('open');
 		// $('#img_upload_dlg').dialog('open').dialog('setTitle','<?php echo _('圖片上傳') ?>');
 
-		$('iframe[name=select_frame]').contents().find('#select_id').val(row_id);
+		// $('iframe[name=select_frame]').contents().find('#select_id').val(row_id);
 
 		// $("div#img_upload_dlg").dropzone({ url: "ajax/JAGetFileData.php" });
 		// Dropzone.autoDiscover = false;
