@@ -621,9 +621,9 @@
 		$('#img_upload_dlg').dialog({
 										title: "<?php echo _('圖片上傳') ?>",
 										width:'90%',
-										top:'40%',
-										left:'10px',
-										position: 'top'
+										top:'10%',
+										left:'10px'
+										// position: 'top'
 
 										 // position: {
 									  //       my: "center center",
