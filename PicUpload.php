@@ -316,7 +316,7 @@ foreach ($pic_detail as $key => $value) {
                                 $org_img = $value['org_img1'];
                                 ?>
                                 <tr class="template-upload" width="90%">
-                                    <td><span class="preview"><img src="detail/<?php echo $org_img ?>" class="previewImg" /></span></td>
+                                    <td><span class="preview"><img height="100px" width="100px" src="detail/<?php echo $org_img ?>" class="previewImg" /></span></td>
                                     <td><p class="name"><?php echo $org_img ?></p><strong class="error text-danger"></strong></td>
                                     <td>
                                     </td>
