@@ -97,7 +97,8 @@ foreach ($pic_detail as $key => $value) {
                     var tpl = $(
                          '<tr class="template-upload">' +
                          // '<tr class="template-upload fade in">' +
-                             '<td><span class="preview"><img src="' + e.target.result + '" class="previewImg" /></span></td>' +
+                             // '<td><span class="preview"><img src="' + e.target.result + '" class="previewImg" /></span></td>' +
+                             '<td></td>'+
                              '<td><p class="name">' + data.files[0].name + '</p><strong class="error text-danger"></strong></td>' +
                              '<td><span class="pro" /></td>' +
                              // '<td><p class="size">' + (data.files[0].size / 1000) + 'k</p></td>' +
@@ -316,7 +317,7 @@ foreach ($pic_detail as $key => $value) {
                                 $org_img = $value['org_img1'];
                                 ?>
                                 <tr class="template-upload" width="90%">
-                                    <td><span class="preview"><img height="100px" width="100px" src="detail/<?php echo $org_img ?>" class="previewImg" /></span></td>
+                                    <td><span class="preview"><img height="100px" width="100px" src="thumb/<?php echo $org_img ?>" class="previewImg" /></span></td>
                                     <td><p class="name"><?php echo $org_img ?></p><strong class="error text-danger"></strong></td>
                                     <td>
                                     </td>

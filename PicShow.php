@@ -577,7 +577,7 @@
 			var img_id = '#img'+i;
 			
 			if(row['img_file_path'+i]!=undefined){
-				var src = 'detail/'+row['img_file_path'+i];	
+				var src = 'thumb/'+row['img_file_path'+i];	
 				// var src = 'upload/'+row.id+'/'+row['img_file_path'+i];
 				
 			}else{
