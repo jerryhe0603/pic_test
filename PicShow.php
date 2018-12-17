@@ -678,8 +678,8 @@
 	   <!--  <input class="easyui-searchbox"  data-options="prompt:'查詢編號',searcher:doSearch" style="">
 	    <input class="easyui-searchbox"  data-options="prompt:'查詢名稱',searcher:doSearch" style="">
  -->
- 		<span><?php echo _('編號') ?>:</span>
-     	<input id="search_code" class="easyui-textbox"  search_type='like' search_column='<?php echo $SQL_tableName ?>.id' >
+ 		<span><?php echo _('統一編號') ?>:</span>
+     	<input id="search_code" class="easyui-textbox"  search_type='like' search_column='<?php echo $SQL_tableName ?>.uniform_number' >
 	    <span><?php echo _('名稱') ?>:</span>
 	    <input id="search_name" class="easyui-textbox"  search_type='like' search_column='<?php echo $SQL_tableName ?>.pic_name' >
 
