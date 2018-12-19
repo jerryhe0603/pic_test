@@ -92,12 +92,10 @@ if($type=='select'){
 	//圖片類型
 	foreach ($arr as $key => $value) {
 		$arr[$key]['pic_type_name']  = $aPicTypeArr[$value['pic_type_id']];
+		$arr[$key]['is_album_name']  = $aSelectItemArr[$value['is_album']];//選項名稱
+
 	}
 
-	//選項名稱
-	foreach ($arr as $key => $value) {
-		$arr[$key]['is_album_name']  = $aSelectItemArr[$value['is_album']];
-	}
 
 	// sql_log($file_name,'end:'.date('Y-m-d H:i:s')."\r\n");
 }else if($type=='select_count'){
@@ -610,48 +608,48 @@ if($type=='select'){
 						chmod($upload_file_name, 0777);
 
 						//============在傳一次縮圖 1280x720
-					
-						// 取得上傳圖片
-						// $src = imagecreatefromjpeg($upload_file_name);
-
-				        switch ($files['type']) {
-			            case 'image/jpeg': 
-			            	$ext = ".jpg"; 
-							
+					 	if(!isset($params["img_thumb"])){
 							// 取得上傳圖片
-			            	$src = imagecreatefromjpeg($upload_file_name);
-			            	break;
-			            case 'image/png': 
-			            	$ext = ".png"; 
-			            	// 取得上傳圖片
-			            	$src = imagecreatefrompng($upload_file_name);
-			            break;
-			            default: 
-			            	$ext = ''; 
+							// $src = imagecreatefromjpeg($upload_file_name);
 
-			            break;
-			        }
+					        switch ($files['type']) {
+					            case 'image/jpeg': 
+					            	$ext = ".jpg"; 
+									
+									// 取得上傳圖片
+					            	$src = imagecreatefromjpeg($upload_file_name);
+					            	break;
+					            case 'image/png': 
+					            	$ext = ".png"; 
+					            	// 取得上傳圖片
+					            	$src = imagecreatefrompng($upload_file_name);
+					            break;
+					            default: 
+					            	$ext = ''; 
 
-				        $newwidth = "640";
-				        $newheight = "360";
-				        // $newwidth = "1280";
-				        // $newheight = "720";
-				        // Load
-						$thumb = imagecreatetruecolor($newwidth, $newheight);
+					            break;
+					        }
 
-						// 開始縮圖
-						imagecopyresampled($thumb, $src, 0, 0, 0, 0, $newwidth, $newheight, $size[0], $size[1]);
-						// $source = imagecreatefromjpeg($url.'/'.$files['name']);//  /tmp/phpxOA1TK
+					        $newwidth = "640";
+					        $newheight = "360";
+					        // $newwidth = "1280";
+					        // $newheight = "720";
+					        // Load
+							$thumb = imagecreatetruecolor($newwidth, $newheight);
 
-						// 儲存縮圖到指定  目錄
-						if($files['type']=="image/jpeg"){
-							imagejpeg($thumb, $dir_prefix_log.$files['name']);
-						}else if($files['type']=="image/png"){
-							imagepng($thumb, $dir_prefix_log.$files['name']);
-						}
-					
-						chmod($dir_prefix_log.$files['name'], 0777);
+							// 開始縮圖
+							imagecopyresampled($thumb, $src, 0, 0, 0, 0, $newwidth, $newheight, $size[0], $size[1]);
+							// $source = imagecreatefromjpeg($url.'/'.$files['name']);//  /tmp/phpxOA1TK
+
+							// 儲存縮圖到指定  目錄
+							if($files['type']=="image/jpeg"){
+								imagejpeg($thumb, $dir_prefix_log.$files['name']);
+							}else if($files['type']=="image/png"){
+								imagepng($thumb, $dir_prefix_log.$files['name']);
+							}
 						
+							chmod($dir_prefix_log.$files['name'], 0777);
+						}
 	 					//=======================
 
 						// 圖片寬高
@@ -715,6 +713,20 @@ if($type=='select'){
 
 			$i++;
 		}
+
+		//是否有更新縮圖
+		$files_thumb = $params["img_thumb"];
+		if($files_thumb['name']!=''){
+			$img_thumb_name = getColumnValue($table_name,'img_file_path1',' id ='.SQLStr($id));
+			// $files['name'] = md5($files['name']);
+
+			$upload_file_thumb_name = $dir_prefix_log.'/'.$img_thumb_name;
+			// unlink($id.'_'.$files["name"]);
+			move_uploaded_file($files_thumb["tmp_name"],$upload_file_thumb_name);
+			chmod($upload_file_thumb_name, 0777);
+		}
+		//============
+		
 
 		$update_sql = substr($update_sql,0, -1);
 

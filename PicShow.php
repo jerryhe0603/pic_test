@@ -67,13 +67,13 @@
    $(document).ready(function () {
 		$(".iframe").colorbox({iframe:true,width:"90%", height:"90%"});
 
-        $("#fm").dropzone({
-            maxFiles: 2000,
-            url: "ajax/JAGetFileData.php/",
-            success: function (file, response) {
-                console.log(response);
-            }
-        });
+        // $("#fm").dropzone({
+        //     maxFiles: 2000,
+        //     url: "ajax/JAGetFileData.php/",
+        //     success: function (file, response) {
+        //         console.log(response);
+        //     }
+        // });
    })
 
 	$(function(){
@@ -238,6 +238,8 @@
 
 		selectReload(form_obj);
 
+		$("#img_thumb_tr").hide();
+		
 		$('#'+form_obj.dlg_id).dialog({
 										title: "<?php echo _('新增') ?>",
 										top:'40%'
@@ -261,7 +263,8 @@
 			$('#warehouse_id').combobox({'disabled':true});
 
 			selectReload(form_obj);
-			
+			$("#img_thumb_tr").show();
+
 			$('#'+form_obj.dlg_id).dialog({
 										title: "<?php echo _('修改') ?>",
 										top:'40%'
@@ -399,6 +402,7 @@
 						});
 
 						$('#'+form_obj.dg_id).datagrid('reload');	// reload the dg
+						$('#'+form_obj.dg_id).datagrid('reload',"{}");	// reload the dg
 						// $('#'+stock_form_obj.dg_id).datagrid('reload');	// reload the stock_dg
 
 					}
@@ -816,10 +820,20 @@
 
 				<tr>
 					<td >
-						<label><?php echo _('地圖圖片') ?>1:</label>
+						<label><?php echo _('地圖圖檔') ?>:</label>
 					</td>
 					<td colSpan=3>
 						<input id=img_file_path1 name="img_file_path1" class="easyui-filebox"  data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%">
+						<!-- <a href="javascript:clearFilePath('img_file_path1');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
+					</td>
+				</tr>
+
+				<tr id="img_thumb_tr">
+					<td >
+						<label><?php echo _('縮圖圖檔') ?>:</label>
+					</td>
+					<td colSpan=3>
+						<input id=img_thumb name="img_thumb" class="easyui-filebox"  data-options="prompt:'<?php echo _('請選擇檔案')?>...'" accept='image/*' buttonText='<?php echo _('請選擇檔案')?>' style="width:100%">
 						<!-- <a href="javascript:clearFilePath('img_file_path1');" class="easyui-linkbutton" iconCls='icon-clear' plain="true"  style='<?php echo form_search_btn ?>;' ><?php echo _('清除') ?></a> -->
 					</td>
 				</tr>
