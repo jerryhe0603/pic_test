@@ -135,11 +135,11 @@ if($type=='select'){
     
 
 	// sql_log($file_name,serialize($params));
-	$check_name = getColumnValue($table_name,'pic_name','pic_name='.SQLStr($pic_name));
-	if($check_name!=''){
+	// $check_name = getColumnValue($table_name,'pic_name','pic_name='.SQLStr($pic_name));
+	// if($check_name!=''){
 
-		$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
-	}
+	// 	$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
+	// }
 
 	
 	$check_uniform_number = getColumnValue($table_name,'uniform_number','uniform_number='.SQLStr($uniform_number));
@@ -448,12 +448,12 @@ if($type=='select'){
 	// 	$errMsg = _('編號').' '._('重複,不允許儲存').'!';
 	// }else{
 
-		$check_name = getColumnValue($table_name,'pic_name','pic_name='.SQLStr($pic_name).' AND id !='.SQLStr($id));
-		if($check_name!=''){
+		// $check_name = getColumnValue($table_name,'pic_name','pic_name='.SQLStr($pic_name).' AND id !='.SQLStr($id));
+		// if($check_name!=''){
 
-			$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
+		// 	$errMsg = _('名稱').' '._('重複,不允許儲存').'!';
 
-		}
+		// }
 	// }
 	// 
 

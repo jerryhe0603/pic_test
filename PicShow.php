@@ -402,7 +402,6 @@
 						});
 
 						$('#'+form_obj.dg_id).datagrid('reload');	// reload the dg
-						$('#'+form_obj.dg_id).datagrid('reload',"{}");	// reload the dg
 						// $('#'+stock_form_obj.dg_id).datagrid('reload');	// reload the stock_dg
 
 					}
