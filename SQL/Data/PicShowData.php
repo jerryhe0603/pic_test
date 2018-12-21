@@ -715,8 +715,8 @@ if($type=='select'){
 		}
 
 		//是否有更新縮圖
-		$files_thumb = $params["img_thumb"];
-		if($files_thumb['name']!=''){
+		$files_thumb = isset($params["img_thumb"])?$params["img_thumb"]:"";
+		if(isset($files_thumb['name'])){
 			$img_thumb_name = getColumnValue($table_name,'img_file_path1',' id ='.SQLStr($id));
 			// $files['name'] = md5($files['name']);
 
